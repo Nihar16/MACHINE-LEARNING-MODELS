@@ -1,0 +1,13 @@
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+xgboost
+lightgbm
+jupyter
+ipykernel
+
+# Deep learning (uncomment what you need; these are large downloads)
+# tensorflow
+# torch
