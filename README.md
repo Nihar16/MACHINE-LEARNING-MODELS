@@ -381,20 +381,31 @@ MACHINE-LEARNING-MODELS/
 ## Getting Started
 
 ```bash
-# Clone the repository
 git clone https://github.com/Nihar16/MACHINE-LEARNING-MODELS.git
 cd MACHINE-LEARNING-MODELS
+```
 
-# Create a virtual environment
+Then run the setup script for your OS. It checks Python, creates a virtual environment, installs dependencies, and registers a Jupyter kernel.
+
+| OS | Command |
+|----|---------|
+| macOS / Linux | `chmod +x setup.sh && ./setup.sh` |
+| Windows (PowerShell) | `.\setup.ps1` |
+| Windows (double-click) | `setup.bat` |
+
+Add `--launch` (macOS/Linux) or `-Launch` (PowerShell) to open Jupyter when setup finishes.
+
+<details>
+<summary>Manual setup</summary>
+
+```bash
 python -m venv venv
 source venv/bin/activate        # Windows: venv\Scripts\activate
-
-# Install dependencies
 pip install -r requirements.txt
-
-# Launch notebooks
 jupyter notebook
 ```
+
+</details>
 
 **Core libraries:** NumPy, pandas, scikit-learn, matplotlib, seaborn, XGBoost, TensorFlow/PyTorch, Jupyter.
 
