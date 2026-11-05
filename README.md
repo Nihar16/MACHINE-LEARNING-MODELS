@@ -1,4 +1,4 @@
-# MACHINE-LEARNING-MODELS
+![MACHINE-LEARNING-MODELS](https://socialify.git.ci/Nihar16/MACHINE-LEARNING-MODELS/image?custom_description=This+repository+is+a+hands-on+Python+collection+of+classic+machine+learning+models+with+clean+code%2C+visual+intuition%2C+and+reproducible+workflows.&description=1&font=Source+Code+Pro&name=1&owner=1&pattern=Circuit+Board&theme=Dark)
 
 A hands-on collection of classic machine learning models implemented, explained, and benchmarked in Python. Each model has its own folder with a notebook, clean code, results, and a write-up of when to use it and when not to.
 
