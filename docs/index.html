@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Twelve Models</title>
+<meta name="description" content="Learn twelve classic machine learning models with live demos, plain explanations and real results.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem("theme"));if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+  <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 26 26" aria-hidden="true"><rect x="0.5" y="0.5" width="25" height="25" rx="6" fill="var(--panel)" stroke="var(--rule)"/><path d="M4 21 L22 5" stroke="var(--ink)" stroke-width="1.6"/><circle cx="8" cy="9" r="2.2" fill="var(--c0)"/><circle cx="12" cy="6.5" r="2.2" fill="var(--c0)"/><circle cx="14" cy="19" r="2.2" fill="var(--c1)"/><circle cx="19.5" cy="15" r="2.2" fill="var(--c1)"/></svg>Twelve Models</a>
+  <nav class="topnav" aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="concepts.html">Concepts</a><a href="index.html#path">All models</a><a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS">GitHub</a></nav>
+  <button class="theme-btn" id="theme-btn" type="button" aria-label="Toggle theme"></button>
+</div></header>
+<main>
+<div class="wrap">
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">An interactive course in classic machine learning</span>
+      <h1>Learn twelve machine learning models by playing with them</h1>
+      <p class="lede">Every model gets a live demo you can poke at, a plain-English explanation, the maths in a few lines, and the real results it scored in this repository. Start with any model, or follow the path in order.</p>
+      <div class="btn-row"><a class="btn primary" href="concepts.html">Start with the core concepts</a><a class="btn" href="models/linear-regression.html">Jump to model 1</a></div>
+      <div class="hero-stats">
+        <div><strong>12</strong><span>models, each with a demo</span></div>
+        <div><strong>99.67%</strong><span>CNN accuracy on MNIST</span></div>
+        <div><strong>36</strong><span>quiz questions</span></div>
+      </div>
+    </div>
+    <div class="demo" style="grid-template-columns:1fr;padding:16px;gap:12px">
+      <span class="eyebrow">Live: the repo's CNN, running in your browser</span>
+      <div class="cnn" data-cnn-pad data-compact data-base=""></div>
+    </div>
+  </section>
+</div>
+<section class="section" id="path"><div class="wrap">
+  <div class="section-head"><span class="eyebrow">The learning path</span><h2>Twelve models, simplest first</h2>
+  <p class="muted">Each family builds on the one before. Pass a model's three-question quiz to mark it as learned; your progress stays in this browser.</p></div>
+  <div class="family"><h3>Regression <span class="eyebrow">Predict a number.</span></h3><div class="cards"><a class="card" href="models/linear-regression.html">
+  <div class="card-top"><span class="num-badge">01</span><span class="done-chip" data-learned-slug="linear-regression" hidden>Learned</span></div>
+  <h4>Linear Regression</h4>
+  <p>Draws the straight line that sits as close as possible to every point, then reads predictions off that line.</p>
+  <div class="card-foot"><span>0.9935 test r²</span><span>Try it →</span></div>
+</a></div></div><div class="family"><h3>Classification <span class="eyebrow">Predict a category.</span></h3><div class="cards"><a class="card" href="models/logistic-regression.html">
+  <div class="card-top"><span class="num-badge">02</span><span class="done-chip" data-learned-slug="logistic-regression" hidden>Learned</span></div>
+  <h4>Logistic Regression</h4>
+  <p>A straight boundary between classes, with distance from that boundary turned into a probability.</p>
+  <div class="card-foot"><span>98.2% test accuracy</span><span>Try it →</span></div>
+</a><a class="card" href="models/knn.html">
+  <div class="card-top"><span class="num-badge">03</span><span class="done-chip" data-learned-slug="knn" hidden>Learned</span></div>
+  <h4>K-Nearest Neighbors</h4>
+  <p>To classify a new point, look at the k closest training points and let them vote.</p>
+  <div class="card-foot"><span>98.3% test accuracy</span><span>Try it →</span></div>
+</a><a class="card" href="models/naive-bayes.html">
+  <div class="card-top"><span class="num-badge">04</span><span class="done-chip" data-learned-slug="naive-bayes" hidden>Learned</span></div>
+  <h4>Naive Bayes</h4>
+  <p>Uses Bayes’ theorem to ask which class most likely produced these features, assuming the features are independent.</p>
+  <div class="card-foot"><span>100.0% test accuracy</span><span>Try it →</span></div>
+</a><a class="card" href="models/svm.html">
+  <div class="card-top"><span class="num-badge">05</span><span class="done-chip" data-learned-slug="svm" hidden>Learned</span></div>
+  <h4>Support Vector Machine</h4>
+  <p>Finds the boundary with the widest possible gap to the nearest points of each class.</p>
+  <div class="card-foot"><span>98.6% test accuracy</span><span>Try it →</span></div>
+</a></div></div><div class="family"><h3>Trees and ensembles <span class="eyebrow">Flowchart rules, and teams of them.</span></h3><div class="cards"><a class="card" href="models/decision-tree.html">
+  <div class="card-top"><span class="num-badge">06</span><span class="done-chip" data-learned-slug="decision-tree" hidden>Learned</span></div>
+  <h4>Decision Tree</h4>
+  <p>Asks a sequence of yes/no questions about the features, like a flowchart, until it reaches an answer.</p>
+  <div class="card-foot"><span>87.7% test accuracy</span><span>Try it →</span></div>
+</a><a class="card" href="models/random-forest.html">
+  <div class="card-top"><span class="num-badge">07</span><span class="done-chip" data-learned-slug="random-forest" hidden>Learned</span></div>
+  <h4>Random Forest</h4>
+  <p>Trains many different decision trees on random samples of the data and averages their votes.</p>
+  <div class="card-foot"><span>100.0% test accuracy</span><span>Try it →</span></div>
+</a><a class="card" href="models/gradient-boosting.html">
+  <div class="card-top"><span class="num-badge">08</span><span class="done-chip" data-learned-slug="gradient-boosting" hidden>Learned</span></div>
+  <h4>Gradient Boosting</h4>
+  <p>Builds small trees one after another, each one correcting the mistakes the previous ones left behind.</p>
+  <div class="card-foot"><span>95.6% test accuracy</span><span>Try it →</span></div>
+</a></div></div><div class="family"><h3>Unsupervised <span class="eyebrow">Find structure without labels.</span></h3><div class="cards"><a class="card" href="models/kmeans.html">
+  <div class="card-top"><span class="num-badge">09</span><span class="done-chip" data-learned-slug="kmeans" hidden>Learned</span></div>
+  <h4>K-Means Clustering</h4>
+  <p>Groups unlabelled points into k clusters by repeatedly moving k centres to the middle of their points.</p>
+  <div class="card-foot"><span>89.3% clusters match species</span><span>Try it →</span></div>
+</a><a class="card" href="models/pca.html">
+  <div class="card-top"><span class="num-badge">10</span><span class="done-chip" data-learned-slug="pca" hidden>Learned</span></div>
+  <h4>Principal Component Analysis</h4>
+  <p>Rotates the data to find the few directions that capture most of its variation, so you can keep those and drop the rest.</p>
+  <div class="card-foot"><span>29 of 64 components for 95% variance</span><span>Try it →</span></div>
+</a></div></div><div class="family"><h3>Deep learning <span class="eyebrow">Layers that learn their own features.</span></h3><div class="cards"><a class="card" href="models/neural-network.html">
+  <div class="card-top"><span class="num-badge">11</span><span class="done-chip" data-learned-slug="neural-network" hidden>Learned</span></div>
+  <h4>Neural Network (MLP)</h4>
+  <p>Stacks layers of simple units; each layer transforms the previous one, so together they can learn very complex boundaries.</p>
+  <div class="card-foot"><span>98.1% test accuracy</span><span>Try it →</span></div>
+</a><a class="card" href="models/cnn.html">
+  <div class="card-top"><span class="num-badge">12</span><span class="done-chip" data-learned-slug="cnn" hidden>Learned</span></div>
+  <h4>Convolutional Neural Network</h4>
+  <p>A neural network that scans images with small learned filters, building up from edges to strokes to whole shapes.</p>
+  <div class="card-foot"><span>99.67% test accuracy</span><span>Try it →</span></div>
+</a></div></div>
+</div></section>
+<section class="section"><div class="wrap">
+  <div class="section-head"><span class="eyebrow">Which model should I use?</span><h2>Answer a few questions</h2>
+  <p class="muted">A starting point, not a rule. In practice you try two or three candidates and compare them on held-out data.</p></div>
+  <div class="chooser" data-names='{&quot;linear-regression&quot;: &quot;Linear Regression&quot;, &quot;logistic-regression&quot;: &quot;Logistic Regression&quot;, &quot;knn&quot;: &quot;K-Nearest Neighbors&quot;, &quot;naive-bayes&quot;: &quot;Naive Bayes&quot;, &quot;svm&quot;: &quot;Support Vector Machine&quot;, &quot;decision-tree&quot;: &quot;Decision Tree&quot;, &quot;random-forest&quot;: &quot;Random Forest&quot;, &quot;gradient-boosting&quot;: &quot;Gradient Boosting&quot;, &quot;kmeans&quot;: &quot;K-Means Clustering&quot;, &quot;pca&quot;: &quot;Principal Component Analysis&quot;, &quot;neural-network&quot;: &quot;Neural Network (MLP)&quot;, &quot;cnn&quot;: &quot;Convolutional Neural Network&quot;}' data-base="">
+    <div class="chooser-trail"></div><div class="chooser-q"></div><div class="chooser-opts"></div><div class="chooser-result" hidden></div>
+  </div>
+</div></section>
+<section class="section"><div class="wrap">
+  <div class="section-head"><span class="eyebrow">Real results</span><h2>How the models scored on real data</h2>
+  <p class="muted">Every classifier was tuned with 5-fold cross-validation on its training split and then scored once on held-out data. Only the CNN and the SVM reach about 99%; that ceiling comes from the data, not from a lack of tuning.</p></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Model</th><th>Dataset</th><th class="num">CV accuracy</th><th class="num">Test accuracy</th><th>≥ 99% on both</th></tr></thead>
+    <tbody><tr><td><a href="models/logistic-regression.html">Logistic Regression</a></td><td>Breast Cancer Wisconsin</td><td class="num">98.2%</td><td class="num">98.2%</td><td><span class="pill">no</span></td></tr><tr><td><a href="models/knn.html">K-Nearest Neighbors</a></td><td>Digits</td><td class="num">98.7%</td><td class="num">98.3%</td><td><span class="pill">no</span></td></tr><tr><td><a href="models/naive-bayes.html">Naive Bayes</a></td><td>Wine</td><td class="num">97.2%</td><td class="num">100.0%</td><td><span class="pill">no</span></td></tr><tr><td><a href="models/svm.html">Support Vector Machine</a></td><td>Digits</td><td class="num">99.1%</td><td class="num">98.6%</td><td><span class="pill">no</span></td></tr><tr><td><a href="models/decision-tree.html">Decision Tree</a></td><td>Breast Cancer Wisconsin</td><td class="num">93.8%</td><td class="num">87.7%</td><td><span class="pill">no</span></td></tr><tr><td><a href="models/random-forest.html">Random Forest</a></td><td>Wine</td><td class="num">97.9%</td><td class="num">100.0%</td><td><span class="pill">no</span></td></tr><tr><td><a href="models/gradient-boosting.html">Gradient Boosting</a></td><td>Breast Cancer Wisconsin</td><td class="num">97.8%</td><td class="num">95.6%</td><td><span class="pill">no</span></td></tr><tr><td><a href="models/neural-network.html">Neural Network (MLP)</a></td><td>Digits</td><td class="num">98.1%</td><td class="num">98.1%</td><td><span class="pill">no</span></td></tr><tr><td><a href="models/cnn.html">Convolutional Neural Network</a></td><td>MNIST</td><td class="num">99.6% (val.)</td><td class="num">99.67%</td><td><span class="pill yes">yes</span></td></tr></tbody>
+  </table></div>
+</div></section>
+<section class="section"><div class="wrap">
+  <div class="section-head"><span class="eyebrow">Your own data</span><h2>Train any of these models on your data</h2>
+  <p class="muted">The repository can try every model on your CSV, report an honest score, and warn you about leakage.</p></div>
+  <pre><code>git clone https://github.com/Nihar16/MACHINE-LEARNING-MODELS.git
+cd MACHINE-LEARNING-MODELS
+pip install -r "Setup files/requirements.txt"
+
+python automl.py --data your_data.csv --target column_to_predict      # try every model
+python models/12_cnn/train.py --data my_images                        # images: one folder per class</code></pre>
+</div></section>
+</main>
+<footer class="site"><div class="wrap">
+  <span>Built from the code and results in <a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS">MACHINE-LEARNING-MODELS</a>. Every number on this site comes from a real run.</span>
+  <span><span id="progress-count">0</span> of 12 models learned</span>
+</div></footer>
+<script src="assets/site.js"></script>
+<script src="assets/plot.js"></script>
+<script src="assets/demos.js"></script>
+<script src="assets/cnn.js"></script>
+</body>
+</html>

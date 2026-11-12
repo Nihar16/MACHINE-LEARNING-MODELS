@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Support Vector Machine · Twelve Models</title>
+<meta name="description" content="Finds the boundary with the widest possible gap to the nearest points of each class.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem("theme"));if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+  <a class="brand" href="../index.html"><svg class="brand-mark" viewBox="0 0 26 26" aria-hidden="true"><rect x="0.5" y="0.5" width="25" height="25" rx="6" fill="var(--panel)" stroke="var(--rule)"/><path d="M4 21 L22 5" stroke="var(--ink)" stroke-width="1.6"/><circle cx="8" cy="9" r="2.2" fill="var(--c0)"/><circle cx="12" cy="6.5" r="2.2" fill="var(--c0)"/><circle cx="14" cy="19" r="2.2" fill="var(--c1)"/><circle cx="19.5" cy="15" r="2.2" fill="var(--c1)"/></svg>Twelve Models</a>
+  <nav class="topnav" aria-label="Main"><a href="../index.html">Home</a><a href="../concepts.html">Concepts</a><a href="../index.html#path" aria-current="page">All models</a><a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS">GitHub</a></nav>
+  <button class="theme-btn" id="theme-btn" type="button" aria-label="Toggle theme"></button>
+</div></header>
+<div class="wrap"><div class="model-layout">
+  <nav class="rail" aria-label="Models"><div class="eyebrow">Regression</div><a href="linear-regression.html">Linear Regression<span class="tick" data-learned-slug="linear-regression" hidden aria-label="learned">✓</span></a><div class="eyebrow">Classification</div><a href="logistic-regression.html">Logistic Regression<span class="tick" data-learned-slug="logistic-regression" hidden aria-label="learned">✓</span></a><a href="knn.html">K-Nearest Neighbors<span class="tick" data-learned-slug="knn" hidden aria-label="learned">✓</span></a><a href="naive-bayes.html">Naive Bayes<span class="tick" data-learned-slug="naive-bayes" hidden aria-label="learned">✓</span></a><a href="svm.html" aria-current="page">Support Vector Machine<span class="tick" data-learned-slug="svm" hidden aria-label="learned">✓</span></a><div class="eyebrow">Trees and ensembles</div><a href="decision-tree.html">Decision Tree<span class="tick" data-learned-slug="decision-tree" hidden aria-label="learned">✓</span></a><a href="random-forest.html">Random Forest<span class="tick" data-learned-slug="random-forest" hidden aria-label="learned">✓</span></a><a href="gradient-boosting.html">Gradient Boosting<span class="tick" data-learned-slug="gradient-boosting" hidden aria-label="learned">✓</span></a><div class="eyebrow">Unsupervised</div><a href="kmeans.html">K-Means Clustering<span class="tick" data-learned-slug="kmeans" hidden aria-label="learned">✓</span></a><a href="pca.html">Principal Component Analysis<span class="tick" data-learned-slug="pca" hidden aria-label="learned">✓</span></a><div class="eyebrow">Deep learning</div><a href="neural-network.html">Neural Network (MLP)<span class="tick" data-learned-slug="neural-network" hidden aria-label="learned">✓</span></a><a href="cnn.html">Convolutional Neural Network<span class="tick" data-learned-slug="cnn" hidden aria-label="learned">✓</span></a></nav>
+  <main class="model-main">
+    <select class="rail-select" id="rail-select" aria-label="Jump to a model"><option value="" disabled>Jump to a model</option><option value="linear-regression.html">1. Linear Regression</option><option value="logistic-regression.html">2. Logistic Regression</option><option value="knn.html">3. K-Nearest Neighbors</option><option value="naive-bayes.html">4. Naive Bayes</option><option value="svm.html" selected>5. Support Vector Machine</option><option value="decision-tree.html">6. Decision Tree</option><option value="random-forest.html">7. Random Forest</option><option value="gradient-boosting.html">8. Gradient Boosting</option><option value="kmeans.html">9. K-Means Clustering</option><option value="pca.html">10. Principal Component Analysis</option><option value="neural-network.html">11. Neural Network (MLP)</option><option value="cnn.html">12. Convolutional Neural Network</option></select>
+    <header class="model-head">
+      <span class="eyebrow">Model 5 of 12 · Classification</span>
+      <h1>Support Vector Machine</h1>
+      <p class="lede">Finds the boundary with the widest possible gap to the nearest points of each class.</p>
+      <div class="tags"><span class="pill">Supervised</span><span class="pill">Maximum margin</span><span class="pill">Kernels</span></div>
+    </header>
+    <section class="block" aria-labelledby="try">
+      <h2 id="try">Try it</h2>
+      <div data-demo="svm"></div>
+      <p class="callout"><strong>Experiment:</strong> Switch to the <strong>RBF</strong> kernel on Circles, then raise γ to its maximum: each point gets its own island. That’s overfitting through the kernel.</p>
+    </section>
+    <section class="block prose" aria-labelledby="idea">
+      <h2 id="idea">The idea</h2>
+      <p>Many lines can separate two groups. The SVM picks the one with the widest “street” between them, on the idea that a boundary with breathing room generalises best. Only the points on the edge of the street matter. These are the <em>support vectors</em>, circled in the demo. Move any other point and nothing changes.</p><p>With the <em>kernel trick</em>, an SVM can draw curved boundaries: the RBF kernel measures similarity between points, which is like mapping them into a higher-dimensional space where a straight cut works.</p>
+    </section>
+    <section class="block" aria-labelledby="how">
+      <h2 id="how">How it works, step by step</h2>
+      <ol class="steps"><li><span>Look for a boundary that separates the classes with the largest margin.</span></li><li><span>Allow some points inside the street or on the wrong side, with penalty <code>C</code>: large C means few violations allowed (tight fit), small C means a wider, more forgiving street.</span></li><li><span>Optionally replace dot products with a kernel such as RBF, controlled by γ (how far each point’s influence reaches).</span></li><li><span>Classify new points by which side of the boundary they fall on.</span></li></ol>
+      <div class="formula">Decision: f(x) = Σ αᵢ yᵢ K(xᵢ, x) + b, predict sign(f(x))<br>RBF kernel: K(a, b) = exp(−γ ‖a − b‖²)<span class="note">Only support vectors have αᵢ &gt; 0, which is why the rest of the data does not affect the boundary.</span></div>
+    </section>
+    <section class="block" aria-labelledby="when">
+      <h2 id="when">Strengths and weaknesses</h2>
+      <div class="procon">
+        <div><h3 class="good-h">Strengths</h3><ul><li>Very strong on small and medium data sets</li><li>Works well with many features, even more features than rows</li><li>Kernels give flexible boundaries</li><li>The best classic model in this repo (99.1% CV on Digits)</li></ul></div>
+        <div><h3 class="bad-h">Weaknesses</h3><ul><li>Slow on very large data sets (training grows roughly with n² to n³)</li><li>Sensitive to C and γ; needs tuning</li><li>Needs feature scaling</li><li>No probabilities out of the box</li></ul></div>
+      </div>
+      <div class="prose"><p><strong>Use it when:</strong> Medium-sized data with clear structure: images of digits, text, bioinformatics.</p><p><strong>Avoid it when:</strong> Hundreds of thousands of rows, or when you need calibrated probabilities quickly.</p></div>
+    </section>
+    <section class="block" aria-labelledby="repo">
+      <h2 id="repo">In this repository</h2>
+      <p class="muted">Dataset: Digits (1797 rows, 64 features)</p>
+      <div class="result-grid"><div><strong>99.1%</strong><span>5-fold CV accuracy</span></div><div><strong>98.6%</strong><span>Held-out test accuracy</span></div><div><strong>5 / 360</strong><span>Test mistakes</span></div></div>
+      
+      <figure style="margin:0;max-width:760px"><img src="../assets/results/svm.png" alt="Result plot for Support Vector Machine from the repository" loading="lazy" style="border:1px solid var(--rule);border-radius:10px;background:#fff"></figure>
+      <pre><code>from sklearn.svm import SVC
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+
+model = make_pipeline(StandardScaler(), SVC(kernel=&quot;rbf&quot;, C=10, gamma=&quot;scale&quot;))
+model.fit(X_train, y_train)</code></pre>
+      <p class="small muted">Full code: <a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS/tree/main/models/05_svm">models/05_svm</a>. Train it on your own data with
+      <code>python models/05_svm/train.py</code> --data your.csv --target column.</p>
+    </section>
+    <section class="block" aria-labelledby="quiz-h">
+      <h2 id="quiz-h">Check yourself</h2>
+      <div class="quiz" data-slug="svm"><div class="q" data-answer="1"><div class="q-title">1. What are support vectors?</div><div class="q-opts"><button type="button">All training points</button><button type="button">The points that lie on or inside the margin and define the boundary</button><button type="button">The misclassified points only</button><button type="button">The cluster centres</button></div><p class="q-explain" hidden>Only these points have non-zero weight in the solution.</p></div><div class="q" data-answer="1"><div class="q-title">2. What does a larger C do?</div><div class="q-opts"><button type="button">Allows more margin violations</button><button type="button">Punishes violations more, giving a tighter fit</button><button type="button">Changes the kernel</button><button type="button">Removes outliers</button></div><p class="q-explain" hidden>High C means a narrow street that fits training data closely; it can overfit.</p></div><div class="q" data-answer="1"><div class="q-title">3. What does a very large γ in the RBF kernel lead to?</div><div class="q-opts"><button type="button">A straight line</button><button type="button">Each point influencing only a tiny area, so the model overfits</button><button type="button">Faster training</button><button type="button">Better generalisation always</button></div><p class="q-explain" hidden>Small reach means very local, wiggly boundaries.</p></div><p class="quiz-score muted">Answer all three correctly to mark this model as learned.</p></div>
+    </section>
+    <nav class="pager" aria-label="Previous and next model"><a href="naive-bayes.html"><span>← Previous</span>Naive Bayes</a><a class="next" href="decision-tree.html"><span>Next →</span>Decision Tree</a></nav>
+  </main>
+</div></div>
+<footer class="site"><div class="wrap">
+  <span>Built from the code and results in <a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS">MACHINE-LEARNING-MODELS</a>. Every number on this site comes from a real run.</span>
+  <span><span id="progress-count">0</span> of 12 models learned</span>
+</div></footer>
+<script src="../assets/site.js"></script>
+<script src="../assets/plot.js"></script>
+<script src="../assets/demos.js"></script>
+<script src="../assets/cnn.js"></script>
+</body>
+</html>

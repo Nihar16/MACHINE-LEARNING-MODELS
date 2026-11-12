@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Convolutional Neural Network · Twelve Models</title>
+<meta name="description" content="A neural network that scans images with small learned filters, building up from edges to strokes to whole shapes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem("theme"));if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+  <a class="brand" href="../index.html"><svg class="brand-mark" viewBox="0 0 26 26" aria-hidden="true"><rect x="0.5" y="0.5" width="25" height="25" rx="6" fill="var(--panel)" stroke="var(--rule)"/><path d="M4 21 L22 5" stroke="var(--ink)" stroke-width="1.6"/><circle cx="8" cy="9" r="2.2" fill="var(--c0)"/><circle cx="12" cy="6.5" r="2.2" fill="var(--c0)"/><circle cx="14" cy="19" r="2.2" fill="var(--c1)"/><circle cx="19.5" cy="15" r="2.2" fill="var(--c1)"/></svg>Twelve Models</a>
+  <nav class="topnav" aria-label="Main"><a href="../index.html">Home</a><a href="../concepts.html">Concepts</a><a href="../index.html#path" aria-current="page">All models</a><a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS">GitHub</a></nav>
+  <button class="theme-btn" id="theme-btn" type="button" aria-label="Toggle theme"></button>
+</div></header>
+<div class="wrap"><div class="model-layout">
+  <nav class="rail" aria-label="Models"><div class="eyebrow">Regression</div><a href="linear-regression.html">Linear Regression<span class="tick" data-learned-slug="linear-regression" hidden aria-label="learned">✓</span></a><div class="eyebrow">Classification</div><a href="logistic-regression.html">Logistic Regression<span class="tick" data-learned-slug="logistic-regression" hidden aria-label="learned">✓</span></a><a href="knn.html">K-Nearest Neighbors<span class="tick" data-learned-slug="knn" hidden aria-label="learned">✓</span></a><a href="naive-bayes.html">Naive Bayes<span class="tick" data-learned-slug="naive-bayes" hidden aria-label="learned">✓</span></a><a href="svm.html">Support Vector Machine<span class="tick" data-learned-slug="svm" hidden aria-label="learned">✓</span></a><div class="eyebrow">Trees and ensembles</div><a href="decision-tree.html">Decision Tree<span class="tick" data-learned-slug="decision-tree" hidden aria-label="learned">✓</span></a><a href="random-forest.html">Random Forest<span class="tick" data-learned-slug="random-forest" hidden aria-label="learned">✓</span></a><a href="gradient-boosting.html">Gradient Boosting<span class="tick" data-learned-slug="gradient-boosting" hidden aria-label="learned">✓</span></a><div class="eyebrow">Unsupervised</div><a href="kmeans.html">K-Means Clustering<span class="tick" data-learned-slug="kmeans" hidden aria-label="learned">✓</span></a><a href="pca.html">Principal Component Analysis<span class="tick" data-learned-slug="pca" hidden aria-label="learned">✓</span></a><div class="eyebrow">Deep learning</div><a href="neural-network.html">Neural Network (MLP)<span class="tick" data-learned-slug="neural-network" hidden aria-label="learned">✓</span></a><a href="cnn.html" aria-current="page">Convolutional Neural Network<span class="tick" data-learned-slug="cnn" hidden aria-label="learned">✓</span></a></nav>
+  <main class="model-main">
+    <select class="rail-select" id="rail-select" aria-label="Jump to a model"><option value="" disabled>Jump to a model</option><option value="linear-regression.html">1. Linear Regression</option><option value="logistic-regression.html">2. Logistic Regression</option><option value="knn.html">3. K-Nearest Neighbors</option><option value="naive-bayes.html">4. Naive Bayes</option><option value="svm.html">5. Support Vector Machine</option><option value="decision-tree.html">6. Decision Tree</option><option value="random-forest.html">7. Random Forest</option><option value="gradient-boosting.html">8. Gradient Boosting</option><option value="kmeans.html">9. K-Means Clustering</option><option value="pca.html">10. Principal Component Analysis</option><option value="neural-network.html">11. Neural Network (MLP)</option><option value="cnn.html" selected>12. Convolutional Neural Network</option></select>
+    <header class="model-head">
+      <span class="eyebrow">Model 12 of 12 · Deep learning</span>
+      <h1>Convolutional Neural Network</h1>
+      <p class="lede">A neural network that scans images with small learned filters, building up from edges to strokes to whole shapes.</p>
+      <div class="tags"><span class="pill">Supervised</span><span class="pill">Images</span><span class="pill">99.67% on MNIST</span></div>
+    </header>
+    <section class="block" aria-labelledby="try">
+      <h2 id="try">Try it</h2>
+      <div class="cnn" data-cnn-pad data-base="../"></div>
+      <p class="callout"><strong>Experiment:</strong> Draw a digit badly on purpose, say a 7 with a bar through it or a very slanted 4, and watch the second guess appear. Then look at which feature maps light up.</p>
+    </section>
+    <section class="block prose" aria-labelledby="idea">
+      <h2 id="idea">The idea</h2>
+      <p>A regular network treats an image as a flat list of pixels and forgets which pixels are neighbours. A CNN slides small filters (3×3 in this repo) across the image. Each filter learns to detect a pattern, like a vertical edge or a curve, wherever it appears. The feature maps below the pad show where each of the 32 first-layer filters fires on your drawing.</p><p>Pooling layers shrink the maps so deeper layers see larger regions, and later layers combine simple patterns into strokes, loops and finally digits. The network on this page is the actual model trained in this repo: 99.67% accuracy on the 10,000 MNIST test images.</p>
+    </section>
+    <section class="block" aria-labelledby="how">
+      <h2 id="how">How it works, step by step</h2>
+      <ol class="steps"><li><span>Convolution: slide each small filter over the image to produce a feature map of where its pattern appears.</span></li><li><span>Activation (ReLU) keeps the positive responses; batch normalisation keeps training stable.</span></li><li><span>Pooling halves the width and height, keeping the strongest response in each 2×2 patch.</span></li><li><span>Repeat conv → pool blocks (32, 64, then 128 filters here), average each final map, and classify with a small dense layer.</span></li><li><span>Train with augmentation (small random rotations, shifts and zooms) so the network learns that a tilted 7 is still a 7.</span></li></ol>
+      <div class="formula">feature map[i, j] = ReLU( Σ filter[u, v] × image[i+u, j+v] + b )<br>Parameters per 3×3 conv layer: 3 × 3 × channels_in × channels_out<span class="note">The same filter is reused at every position, so a CNN needs far fewer weights than a dense network and recognises a pattern anywhere in the image.</span></div>
+    </section>
+    <section class="block" aria-labelledby="when">
+      <h2 id="when">Strengths and weaknesses</h2>
+      <div class="procon">
+        <div><h3 class="good-h">Strengths</h3><ul><li>State of the art for images</li><li>Learns its own features: no hand-crafted inputs</li><li>Robust to small shifts and distortions</li><li>Transfer learning (e.g. a pretrained ResNet) works well on small data sets</li></ul></div>
+        <div><h3 class="bad-h">Weaknesses</h3><ul><li>Needs more data and compute than classic models (a GPU helps)</li><li>Hard to interpret</li><li>Many design choices: depth, filters, augmentation, learning rate</li></ul></div>
+      </div>
+      <div class="prose"><p><strong>Use it when:</strong> Images and other grid-like data: photos, scans, spectrograms, handwriting.</p><p><strong>Avoid it when:</strong> Plain tabular data, where trees and linear models are simpler and usually better.</p></div>
+    </section>
+    <section class="block" aria-labelledby="repo">
+      <h2 id="repo">In this repository</h2>
+      <p class="muted">Dataset: MNIST (55,000 train, 5,000 validation, 10,000 test images)</p>
+      <div class="result-grid"><div><strong>99.67%</strong><span>Test accuracy</span></div><div><strong>33</strong><span>Wrong out of 10,000</span></div><div><strong>304,682</strong><span>Parameters</span></div></div>
+      <p class="callout">The test images were never used for training or for picking the epoch. Most of the remaining errors are digits a person could misread too.</p>
+      <figure style="margin:0;max-width:760px"><img src="../assets/results/cnn.png" alt="Result plot for Convolutional Neural Network from the repository" loading="lazy" style="border:1px solid var(--rule);border-radius:10px;background:#fff"></figure>
+      <pre><code># Train on MNIST (repo benchmark: 99.67% test accuracy)
+python models/12_cnn/model.py
+
+# Train on your own images: one folder per class
+python models/12_cnn/train.py --data my_images --arch resnet18 --pretrained
+python models/12_cnn/predict.py --model ml_output/cnn/model.pt --images new_photos/</code></pre>
+      <p class="small muted">Full code: <a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS/tree/main/models/12_cnn">models/12_cnn</a>. Train it on your own data with
+      <code>python models/12_cnn/train.py</code> --data image_folder.</p>
+    </section>
+    <section class="block" aria-labelledby="quiz-h">
+      <h2 id="quiz-h">Check yourself</h2>
+      <div class="quiz" data-slug="cnn"><div class="q" data-answer="1"><div class="q-title">1. What does a convolution filter do?</div><div class="q-opts"><button type="button">Sorts the pixels</button><button type="button">Slides over the image and responds where its learned pattern appears</button><button type="button">Removes colour</button><button type="button">Counts the classes</button></div><p class="q-explain" hidden>The output is a feature map showing where the pattern was found.</p></div><div class="q" data-answer="1"><div class="q-title">2. Why does a CNN need fewer weights than a dense network on images?</div><div class="q-opts"><button type="button">It uses smaller images</button><button type="button">The same small filter is reused at every position</button><button type="button">It skips training</button><button type="button">It has no biases</button></div><p class="q-explain" hidden>Weight sharing is the key idea.</p></div><div class="q" data-answer="1"><div class="q-title">3. Why train with random rotations and shifts?</div><div class="q-opts"><button type="button">To make training faster</button><button type="button">So the network learns that slightly moved or tilted digits are the same digit</button><button type="button">To reduce the data set</button><button type="button">It is required by PyTorch</button></div><p class="q-explain" hidden>Augmentation is a big reason this repo&#x27;s CNN clears 99%.</p></div><p class="quiz-score muted">Answer all three correctly to mark this model as learned.</p></div>
+    </section>
+    <nav class="pager" aria-label="Previous and next model"><a href="neural-network.html"><span>← Previous</span>Neural Network (MLP)</a><a class="next" href="../index.html#path"><span>Done →</span>Back to all models</a></nav>
+  </main>
+</div></div>
+<footer class="site"><div class="wrap">
+  <span>Built from the code and results in <a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS">MACHINE-LEARNING-MODELS</a>. Every number on this site comes from a real run.</span>
+  <span><span id="progress-count">0</span> of 12 models learned</span>
+</div></footer>
+<script src="../assets/site.js"></script>
+<script src="../assets/plot.js"></script>
+<script src="../assets/demos.js"></script>
+<script src="../assets/cnn.js"></script>
+</body>
+</html>

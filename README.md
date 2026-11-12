@@ -2,6 +2,8 @@
 
 A hands-on collection of classic machine learning models implemented, explained, and benchmarked in Python. Each model has its own folder with a notebook, clean code, results, and a write-up of when to use it and when not to.
 
+> **Learn it interactively:** the [Twelve Models website](https://nihar16.github.io/MACHINE-LEARNING-MODELS/) has a live demo, plain-English explanation and quiz for every model, and lets you draw digits for the repo's CNN to recognise. It lives in [`docs/`](docs/); see [`website/README.md`](website/README.md) to publish or edit it.
+
 > **Goal:** build a practical, intuition-first understanding of the most important ML algorithms, from simple linear models to neural networks, and be able to choose the right one for a given problem.
 
 ---

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Naive Bayes · Twelve Models</title>
+<meta name="description" content="Uses Bayes’ theorem to ask which class most likely produced these features, assuming the features are independent.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem("theme"));if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+  <a class="brand" href="../index.html"><svg class="brand-mark" viewBox="0 0 26 26" aria-hidden="true"><rect x="0.5" y="0.5" width="25" height="25" rx="6" fill="var(--panel)" stroke="var(--rule)"/><path d="M4 21 L22 5" stroke="var(--ink)" stroke-width="1.6"/><circle cx="8" cy="9" r="2.2" fill="var(--c0)"/><circle cx="12" cy="6.5" r="2.2" fill="var(--c0)"/><circle cx="14" cy="19" r="2.2" fill="var(--c1)"/><circle cx="19.5" cy="15" r="2.2" fill="var(--c1)"/></svg>Twelve Models</a>
+  <nav class="topnav" aria-label="Main"><a href="../index.html">Home</a><a href="../concepts.html">Concepts</a><a href="../index.html#path" aria-current="page">All models</a><a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS">GitHub</a></nav>
+  <button class="theme-btn" id="theme-btn" type="button" aria-label="Toggle theme"></button>
+</div></header>
+<div class="wrap"><div class="model-layout">
+  <nav class="rail" aria-label="Models"><div class="eyebrow">Regression</div><a href="linear-regression.html">Linear Regression<span class="tick" data-learned-slug="linear-regression" hidden aria-label="learned">✓</span></a><div class="eyebrow">Classification</div><a href="logistic-regression.html">Logistic Regression<span class="tick" data-learned-slug="logistic-regression" hidden aria-label="learned">✓</span></a><a href="knn.html">K-Nearest Neighbors<span class="tick" data-learned-slug="knn" hidden aria-label="learned">✓</span></a><a href="naive-bayes.html" aria-current="page">Naive Bayes<span class="tick" data-learned-slug="naive-bayes" hidden aria-label="learned">✓</span></a><a href="svm.html">Support Vector Machine<span class="tick" data-learned-slug="svm" hidden aria-label="learned">✓</span></a><div class="eyebrow">Trees and ensembles</div><a href="decision-tree.html">Decision Tree<span class="tick" data-learned-slug="decision-tree" hidden aria-label="learned">✓</span></a><a href="random-forest.html">Random Forest<span class="tick" data-learned-slug="random-forest" hidden aria-label="learned">✓</span></a><a href="gradient-boosting.html">Gradient Boosting<span class="tick" data-learned-slug="gradient-boosting" hidden aria-label="learned">✓</span></a><div class="eyebrow">Unsupervised</div><a href="kmeans.html">K-Means Clustering<span class="tick" data-learned-slug="kmeans" hidden aria-label="learned">✓</span></a><a href="pca.html">Principal Component Analysis<span class="tick" data-learned-slug="pca" hidden aria-label="learned">✓</span></a><div class="eyebrow">Deep learning</div><a href="neural-network.html">Neural Network (MLP)<span class="tick" data-learned-slug="neural-network" hidden aria-label="learned">✓</span></a><a href="cnn.html">Convolutional Neural Network<span class="tick" data-learned-slug="cnn" hidden aria-label="learned">✓</span></a></nav>
+  <main class="model-main">
+    <select class="rail-select" id="rail-select" aria-label="Jump to a model"><option value="" disabled>Jump to a model</option><option value="linear-regression.html">1. Linear Regression</option><option value="logistic-regression.html">2. Logistic Regression</option><option value="knn.html">3. K-Nearest Neighbors</option><option value="naive-bayes.html" selected>4. Naive Bayes</option><option value="svm.html">5. Support Vector Machine</option><option value="decision-tree.html">6. Decision Tree</option><option value="random-forest.html">7. Random Forest</option><option value="gradient-boosting.html">8. Gradient Boosting</option><option value="kmeans.html">9. K-Means Clustering</option><option value="pca.html">10. Principal Component Analysis</option><option value="neural-network.html">11. Neural Network (MLP)</option><option value="cnn.html">12. Convolutional Neural Network</option></select>
+    <header class="model-head">
+      <span class="eyebrow">Model 4 of 12 · Classification</span>
+      <h1>Naive Bayes</h1>
+      <p class="lede">Uses Bayes’ theorem to ask which class most likely produced these features, assuming the features are independent.</p>
+      <div class="tags"><span class="pill">Supervised</span><span class="pill">Probabilistic</span><span class="pill">Extremely fast</span></div>
+    </header>
+    <section class="block" aria-labelledby="try">
+      <h2 id="try">Try it</h2>
+      <div data-demo="naive-bayes"></div>
+      <p class="callout"><strong>Experiment:</strong> Pick <strong>XOR</strong>: each class is spread evenly along both axes, so per-feature bell curves can’t separate them. That’s the independence assumption failing.</p>
+    </section>
+    <section class="block prose" aria-labelledby="idea">
+      <h2 id="idea">The idea</h2>
+      <p>For each class, Naive Bayes learns what typical values of each feature look like. Gaussian Naive Bayes stores a mean and a spread per feature per class, which is the bell curves drawn as ellipses in the demo.</p><p>To classify, it multiplies how likely each feature value is under each class, times how common the class is, and picks the largest. The “naive” part is assuming features don’t influence each other. That’s rarely true, yet the model works surprisingly well, especially for text, where each word is a feature.</p>
+    </section>
+    <section class="block" aria-labelledby="how">
+      <h2 id="how">How it works, step by step</h2>
+      <ol class="steps"><li><span>Estimate the prior: how common each class is in the training data.</span></li><li><span>For each class and each feature, estimate a distribution (Gaussian for numbers, word frequencies for text).</span></li><li><span>For a new example, multiply the prior by the likelihood of each feature value under that class.</span></li><li><span>Predict the class with the highest result (computed with logarithms to avoid tiny numbers).</span></li></ol>
+      <div class="formula">P(class | x) ∝ P(class) × P(x₁ | class) × P(x₂ | class) × …<span class="note">The product of separate terms is the independence assumption. Because each class gets axis-aligned ellipses, the model cannot represent tilted, correlated clusters.</span></div>
+    </section>
+    <section class="block" aria-labelledby="when">
+      <h2 id="when">Strengths and weaknesses</h2>
+      <div class="procon">
+        <div><h3 class="good-h">Strengths</h3><ul><li>Trains in one pass over the data: extremely fast</li><li>Works with very little training data</li><li>Excellent baseline for text (spam filters, topic labelling)</li><li>Handles many classes naturally</li></ul></div>
+        <div><h3 class="bad-h">Weaknesses</h3><ul><li>Independence rarely holds, so probabilities are poorly calibrated</li><li>Cannot capture interactions between features (try XOR)</li><li>A value never seen in training gets probability zero without smoothing</li></ul></div>
+      </div>
+      <div class="prose"><p><strong>Use it when:</strong> Text classification, very large or streaming data, or as a quick baseline.</p><p><strong>Avoid it when:</strong> Features interact strongly or you need trustworthy probability values.</p></div>
+    </section>
+    <section class="block" aria-labelledby="repo">
+      <h2 id="repo">In this repository</h2>
+      <p class="muted">Dataset: Wine (178 rows, 13 features)</p>
+      <div class="result-grid"><div><strong>97.2%</strong><span>5-fold CV accuracy</span></div><div><strong>100.0%</strong><span>Held-out test accuracy</span></div><div><strong>0 / 36</strong><span>Test mistakes</span></div></div>
+      <p class="callout">The test set has only 36 examples, so one mistake moves accuracy by 2.8 points. The cross-validation score is the more reliable number.</p>
+      <figure style="margin:0;max-width:760px"><img src="../assets/results/naive-bayes.png" alt="Result plot for Naive Bayes from the repository" loading="lazy" style="border:1px solid var(--rule);border-radius:10px;background:#fff"></figure>
+      <pre><code>from sklearn.naive_bayes import GaussianNB, MultinomialNB
+
+GaussianNB().fit(X_train, y_train)          # numeric features
+MultinomialNB().fit(word_counts, labels)    # text as word counts</code></pre>
+      <p class="small muted">Full code: <a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS/tree/main/models/04_naive_bayes">models/04_naive_bayes</a>. Train it on your own data with
+      <code>python models/04_naive_bayes/train.py</code> --data your.csv --target column.</p>
+    </section>
+    <section class="block" aria-labelledby="quiz-h">
+      <h2 id="quiz-h">Check yourself</h2>
+      <div class="quiz" data-slug="naive-bayes"><div class="q" data-answer="1"><div class="q-title">1. What is “naive” about Naive Bayes?</div><div class="q-opts"><button type="button">It uses few data points</button><button type="button">It assumes features are independent given the class</button><button type="button">It ignores the class prior</button><button type="button">It has no parameters</button></div><p class="q-explain" hidden>That assumption lets it multiply per-feature probabilities.</p></div><div class="q" data-answer="1"><div class="q-title">2. Where does Naive Bayes classically shine?</div><div class="q-opts"><button type="button">Image recognition</button><button type="button">Text classification such as spam filtering</button><button type="button">Time series forecasting</button><button type="button">Clustering</button></div><p class="q-explain" hidden>Word counts suit it well, and it trains in a single pass.</p></div><div class="q" data-answer="1"><div class="q-title">3. Why does it fail on XOR?</div><div class="q-opts"><button type="button">Too few points</button><button type="button">The class depends on a combination of x and y, not on either one alone</button><button type="button">XOR has three classes</button><button type="button">It needs scaling</button></div><p class="q-explain" hidden>Looked at one feature at a time, both XOR classes look identical.</p></div><p class="quiz-score muted">Answer all three correctly to mark this model as learned.</p></div>
+    </section>
+    <nav class="pager" aria-label="Previous and next model"><a href="knn.html"><span>← Previous</span>K-Nearest Neighbors</a><a class="next" href="svm.html"><span>Next →</span>Support Vector Machine</a></nav>
+  </main>
+</div></div>
+<footer class="site"><div class="wrap">
+  <span>Built from the code and results in <a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS">MACHINE-LEARNING-MODELS</a>. Every number on this site comes from a real run.</span>
+  <span><span id="progress-count">0</span> of 12 models learned</span>
+</div></footer>
+<script src="../assets/site.js"></script>
+<script src="../assets/plot.js"></script>
+<script src="../assets/demos.js"></script>
+<script src="../assets/cnn.js"></script>
+</body>
+</html>

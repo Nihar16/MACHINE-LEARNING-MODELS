@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gradient Boosting · Twelve Models</title>
+<meta name="description" content="Builds small trees one after another, each one correcting the mistakes the previous ones left behind.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem("theme"));if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+  <a class="brand" href="../index.html"><svg class="brand-mark" viewBox="0 0 26 26" aria-hidden="true"><rect x="0.5" y="0.5" width="25" height="25" rx="6" fill="var(--panel)" stroke="var(--rule)"/><path d="M4 21 L22 5" stroke="var(--ink)" stroke-width="1.6"/><circle cx="8" cy="9" r="2.2" fill="var(--c0)"/><circle cx="12" cy="6.5" r="2.2" fill="var(--c0)"/><circle cx="14" cy="19" r="2.2" fill="var(--c1)"/><circle cx="19.5" cy="15" r="2.2" fill="var(--c1)"/></svg>Twelve Models</a>
+  <nav class="topnav" aria-label="Main"><a href="../index.html">Home</a><a href="../concepts.html">Concepts</a><a href="../index.html#path" aria-current="page">All models</a><a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS">GitHub</a></nav>
+  <button class="theme-btn" id="theme-btn" type="button" aria-label="Toggle theme"></button>
+</div></header>
+<div class="wrap"><div class="model-layout">
+  <nav class="rail" aria-label="Models"><div class="eyebrow">Regression</div><a href="linear-regression.html">Linear Regression<span class="tick" data-learned-slug="linear-regression" hidden aria-label="learned">✓</span></a><div class="eyebrow">Classification</div><a href="logistic-regression.html">Logistic Regression<span class="tick" data-learned-slug="logistic-regression" hidden aria-label="learned">✓</span></a><a href="knn.html">K-Nearest Neighbors<span class="tick" data-learned-slug="knn" hidden aria-label="learned">✓</span></a><a href="naive-bayes.html">Naive Bayes<span class="tick" data-learned-slug="naive-bayes" hidden aria-label="learned">✓</span></a><a href="svm.html">Support Vector Machine<span class="tick" data-learned-slug="svm" hidden aria-label="learned">✓</span></a><div class="eyebrow">Trees and ensembles</div><a href="decision-tree.html">Decision Tree<span class="tick" data-learned-slug="decision-tree" hidden aria-label="learned">✓</span></a><a href="random-forest.html">Random Forest<span class="tick" data-learned-slug="random-forest" hidden aria-label="learned">✓</span></a><a href="gradient-boosting.html" aria-current="page">Gradient Boosting<span class="tick" data-learned-slug="gradient-boosting" hidden aria-label="learned">✓</span></a><div class="eyebrow">Unsupervised</div><a href="kmeans.html">K-Means Clustering<span class="tick" data-learned-slug="kmeans" hidden aria-label="learned">✓</span></a><a href="pca.html">Principal Component Analysis<span class="tick" data-learned-slug="pca" hidden aria-label="learned">✓</span></a><div class="eyebrow">Deep learning</div><a href="neural-network.html">Neural Network (MLP)<span class="tick" data-learned-slug="neural-network" hidden aria-label="learned">✓</span></a><a href="cnn.html">Convolutional Neural Network<span class="tick" data-learned-slug="cnn" hidden aria-label="learned">✓</span></a></nav>
+  <main class="model-main">
+    <select class="rail-select" id="rail-select" aria-label="Jump to a model"><option value="" disabled>Jump to a model</option><option value="linear-regression.html">1. Linear Regression</option><option value="logistic-regression.html">2. Logistic Regression</option><option value="knn.html">3. K-Nearest Neighbors</option><option value="naive-bayes.html">4. Naive Bayes</option><option value="svm.html">5. Support Vector Machine</option><option value="decision-tree.html">6. Decision Tree</option><option value="random-forest.html">7. Random Forest</option><option value="gradient-boosting.html" selected>8. Gradient Boosting</option><option value="kmeans.html">9. K-Means Clustering</option><option value="pca.html">10. Principal Component Analysis</option><option value="neural-network.html">11. Neural Network (MLP)</option><option value="cnn.html">12. Convolutional Neural Network</option></select>
+    <header class="model-head">
+      <span class="eyebrow">Model 8 of 12 · Trees and ensembles</span>
+      <h1>Gradient Boosting</h1>
+      <p class="lede">Builds small trees one after another, each one correcting the mistakes the previous ones left behind.</p>
+      <div class="tags"><span class="pill">Supervised</span><span class="pill">Ensemble (boosting)</span><span class="pill">XGBoost / LightGBM</span></div>
+    </header>
+    <section class="block" aria-labelledby="try">
+      <h2 id="try">Try it</h2>
+      <div data-demo="gradient-boosting"></div>
+      <p class="callout"><strong>Experiment:</strong> Set depth to 4 and press <strong>Add 100</strong> a few times. Train error goes to almost zero while test error creeps up. That’s why boosting uses early stopping.</p>
+    </section>
+    <section class="block prose" aria-labelledby="idea">
+      <h2 id="idea">The idea</h2>
+      <p>Start with a simple guess, the average. Look at what is still wrong: those leftover errors are the residuals. Train a small tree to predict the residuals, add a fraction of its output (the learning rate) to the model, and repeat.</p><p>Each tree fixes a little of what remains, like a team where every new member focuses on the cases the others got wrong. In the demo, the dashed orange curve is the newest tree’s correction; the blue curve is the running total.</p>
+    </section>
+    <section class="block" aria-labelledby="how">
+      <h2 id="how">How it works, step by step</h2>
+      <ol class="steps"><li><span>Start from a constant prediction, such as the mean of the target.</span></li><li><span>Compute residuals: target minus current prediction (more generally, the gradient of the loss).</span></li><li><span>Fit a small tree (often depth 3–8) to those residuals.</span></li><li><span>Add the tree’s output times the learning rate, then repeat from step 2 for hundreds of rounds.</span></li></ol>
+      <div class="formula">F₀(x) = mean(y)<br>Fₘ(x) = Fₘ₋₁(x) + η · treeₘ(x),   where treeₘ is fitted to y − Fₘ₋₁(x)<span class="note">A small learning rate η with more trees usually generalises better than a large η with few trees.</span></div>
+    </section>
+    <section class="block" aria-labelledby="when">
+      <h2 id="when">Strengths and weaknesses</h2>
+      <div class="procon">
+        <div><h3 class="good-h">Strengths</h3><ul><li>Often the most accurate model for tabular data</li><li>Handles mixed feature types and missing values (XGBoost, LightGBM)</li><li>Flexible loss functions (classification, regression, ranking)</li><li>Built-in regularisation</li></ul></div>
+        <div><h3 class="bad-h">Weaknesses</h3><ul><li>Many hyperparameters to tune</li><li>Overfits if you add too many deep trees</li><li>Trees are built in sequence, so training is slower than a forest</li><li>Harder to interpret</li></ul></div>
+      </div>
+      <div class="prose"><p><strong>Use it when:</strong> Structured / tabular data where accuracy matters: risk scoring, sales forecasting, competitions.</p><p><strong>Avoid it when:</strong> Images, audio or text (use neural networks), or very small data where a linear model is enough.</p></div>
+    </section>
+    <section class="block" aria-labelledby="repo">
+      <h2 id="repo">In this repository</h2>
+      <p class="muted">Dataset: Breast Cancer Wisconsin (569 rows, 30 features)</p>
+      <div class="result-grid"><div><strong>97.8%</strong><span>5-fold CV accuracy</span></div><div><strong>95.6%</strong><span>Held-out test accuracy</span></div><div><strong>5 / 114</strong><span>Test mistakes</span></div></div>
+      
+      <figure style="margin:0;max-width:760px"><img src="../assets/results/gradient-boosting.png" alt="Result plot for Gradient Boosting from the repository" loading="lazy" style="border:1px solid var(--rule);border-radius:10px;background:#fff"></figure>
+      <pre><code>from xgboost import XGBClassifier
+
+model = XGBClassifier(n_estimators=400, learning_rate=0.1, max_depth=3)
+model.fit(X_train, y_train, eval_set=[(X_val, y_val)], verbose=False)</code></pre>
+      <p class="small muted">Full code: <a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS/tree/main/models/08_gradient_boosting">models/08_gradient_boosting</a>. Train it on your own data with
+      <code>python models/08_gradient_boosting/train.py</code> --data your.csv --target column.</p>
+    </section>
+    <section class="block" aria-labelledby="quiz-h">
+      <h2 id="quiz-h">Check yourself</h2>
+      <div class="quiz" data-slug="gradient-boosting"><div class="q" data-answer="1"><div class="q-title">1. What does each new tree learn to predict?</div><div class="q-opts"><button type="button">The original target</button><button type="button">The residual errors of the current model</button><button type="button">A random subset of labels</button><button type="button">The feature importances</button></div><p class="q-explain" hidden>Each tree corrects what the ensemble so far gets wrong.</p></div><div class="q" data-answer="1"><div class="q-title">2. Boosting versus a random forest:</div><div class="q-opts"><button type="button">Both train trees independently</button><button type="button">Boosting trains trees in sequence; forests train them independently</button><button type="button">Forests use residuals</button><button type="button">They are identical</button></div><p class="q-explain" hidden>Sequential correction (boosting) versus parallel averaging (bagging).</p></div><div class="q" data-answer="1"><div class="q-title">3. Why use a small learning rate?</div><div class="q-opts"><button type="button">Faster training</button><button type="button">Each tree contributes cautiously, which usually generalises better</button><button type="button">It removes the need for trees</button><button type="button">To increase variance</button></div><p class="q-explain" hidden>Many small steps beat a few big ones, at the cost of more trees.</p></div><p class="quiz-score muted">Answer all three correctly to mark this model as learned.</p></div>
+    </section>
+    <nav class="pager" aria-label="Previous and next model"><a href="random-forest.html"><span>← Previous</span>Random Forest</a><a class="next" href="kmeans.html"><span>Next →</span>K-Means Clustering</a></nav>
+  </main>
+</div></div>
+<footer class="site"><div class="wrap">
+  <span>Built from the code and results in <a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS">MACHINE-LEARNING-MODELS</a>. Every number on this site comes from a real run.</span>
+  <span><span id="progress-count">0</span> of 12 models learned</span>
+</div></footer>
+<script src="../assets/site.js"></script>
+<script src="../assets/plot.js"></script>
+<script src="../assets/demos.js"></script>
+<script src="../assets/cnn.js"></script>
+</body>
+</html>
