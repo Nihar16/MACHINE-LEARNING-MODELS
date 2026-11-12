@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Decision Tree · Twelve Models</title>
+<meta name="description" content="Asks a sequence of yes/no questions about the features, like a flowchart, until it reaches an answer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem("theme"));if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+  <a class="brand" href="../index.html"><svg class="brand-mark" viewBox="0 0 26 26" aria-hidden="true"><rect x="0.5" y="0.5" width="25" height="25" rx="6" fill="var(--panel)" stroke="var(--rule)"/><path d="M4 21 L22 5" stroke="var(--ink)" stroke-width="1.6"/><circle cx="8" cy="9" r="2.2" fill="var(--c0)"/><circle cx="12" cy="6.5" r="2.2" fill="var(--c0)"/><circle cx="14" cy="19" r="2.2" fill="var(--c1)"/><circle cx="19.5" cy="15" r="2.2" fill="var(--c1)"/></svg>Twelve Models</a>
+  <nav class="topnav" aria-label="Main"><a href="../index.html">Home</a><a href="../concepts.html">Concepts</a><a href="../index.html#path" aria-current="page">All models</a><a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS">GitHub</a></nav>
+  <button class="theme-btn" id="theme-btn" type="button" aria-label="Toggle theme"></button>
+</div></header>
+<div class="wrap"><div class="model-layout">
+  <nav class="rail" aria-label="Models"><div class="eyebrow">Regression</div><a href="linear-regression.html">Linear Regression<span class="tick" data-learned-slug="linear-regression" hidden aria-label="learned">✓</span></a><div class="eyebrow">Classification</div><a href="logistic-regression.html">Logistic Regression<span class="tick" data-learned-slug="logistic-regression" hidden aria-label="learned">✓</span></a><a href="knn.html">K-Nearest Neighbors<span class="tick" data-learned-slug="knn" hidden aria-label="learned">✓</span></a><a href="naive-bayes.html">Naive Bayes<span class="tick" data-learned-slug="naive-bayes" hidden aria-label="learned">✓</span></a><a href="svm.html">Support Vector Machine<span class="tick" data-learned-slug="svm" hidden aria-label="learned">✓</span></a><div class="eyebrow">Trees and ensembles</div><a href="decision-tree.html" aria-current="page">Decision Tree<span class="tick" data-learned-slug="decision-tree" hidden aria-label="learned">✓</span></a><a href="random-forest.html">Random Forest<span class="tick" data-learned-slug="random-forest" hidden aria-label="learned">✓</span></a><a href="gradient-boosting.html">Gradient Boosting<span class="tick" data-learned-slug="gradient-boosting" hidden aria-label="learned">✓</span></a><div class="eyebrow">Unsupervised</div><a href="kmeans.html">K-Means Clustering<span class="tick" data-learned-slug="kmeans" hidden aria-label="learned">✓</span></a><a href="pca.html">Principal Component Analysis<span class="tick" data-learned-slug="pca" hidden aria-label="learned">✓</span></a><div class="eyebrow">Deep learning</div><a href="neural-network.html">Neural Network (MLP)<span class="tick" data-learned-slug="neural-network" hidden aria-label="learned">✓</span></a><a href="cnn.html">Convolutional Neural Network<span class="tick" data-learned-slug="cnn" hidden aria-label="learned">✓</span></a></nav>
+  <main class="model-main">
+    <select class="rail-select" id="rail-select" aria-label="Jump to a model"><option value="" disabled>Jump to a model</option><option value="linear-regression.html">1. Linear Regression</option><option value="logistic-regression.html">2. Logistic Regression</option><option value="knn.html">3. K-Nearest Neighbors</option><option value="naive-bayes.html">4. Naive Bayes</option><option value="svm.html">5. Support Vector Machine</option><option value="decision-tree.html" selected>6. Decision Tree</option><option value="random-forest.html">7. Random Forest</option><option value="gradient-boosting.html">8. Gradient Boosting</option><option value="kmeans.html">9. K-Means Clustering</option><option value="pca.html">10. Principal Component Analysis</option><option value="neural-network.html">11. Neural Network (MLP)</option><option value="cnn.html">12. Convolutional Neural Network</option></select>
+    <header class="model-head">
+      <span class="eyebrow">Model 6 of 12 · Trees and ensembles</span>
+      <h1>Decision Tree</h1>
+      <p class="lede">Asks a sequence of yes/no questions about the features, like a flowchart, until it reaches an answer.</p>
+      <div class="tags"><span class="pill">Supervised</span><span class="pill">If/then rules</span><span class="pill">No scaling needed</span></div>
+    </header>
+    <section class="block" aria-labelledby="try">
+      <h2 id="try">Try it</h2>
+      <div data-demo="decision-tree"></div>
+      <p class="callout"><strong>Experiment:</strong> On <strong>Overlapping blobs</strong>, raise the depth to 10. Train accuracy climbs towards 100% while test accuracy falls. The tiny boxes are the tree memorising noise.</p>
+    </section>
+    <section class="block prose" aria-labelledby="idea">
+      <h2 id="idea">The idea</h2>
+      <p>A decision tree splits the data with a question such as “is x ≤ 0.31?”, then splits each side again, and so on. Each question is chosen to make the two resulting groups as pure as possible, ideally one class each.</p><p>The result reads like a flowchart, and the demo prints it beside the plot. Every split is a straight cut parallel to an axis, which is why tree boundaries look like staircases.</p>
+    </section>
+    <section class="block" aria-labelledby="how">
+      <h2 id="how">How it works, step by step</h2>
+      <ol class="steps"><li><span>Consider every feature and every possible threshold.</span></li><li><span>Pick the split that most reduces impurity (Gini or entropy): the two sides should each be dominated by one class.</span></li><li><span>Repeat on each side until a stopping rule: maximum depth, too few points, or a pure group.</span></li><li><span>Each leaf predicts its majority class. A new example follows the questions down to a leaf.</span></li></ol>
+      <div class="formula">Gini impurity = 1 − Σ pₖ²   (0 = pure, 0.5 = 50/50 for two classes)<br>Choose the split that minimises the weighted impurity of the two children<span class="note">Depth, minimum leaf size and pruning (ccp_alpha) are the brakes that stop a tree from memorising noise.</span></div>
+    </section>
+    <section class="block" aria-labelledby="when">
+      <h2 id="when">Strengths and weaknesses</h2>
+      <div class="procon">
+        <div><h3 class="good-h">Strengths</h3><ul><li>Easy to explain: the model is a set of rules</li><li>No feature scaling needed; handles numbers and categories</li><li>Captures interactions and thresholds</li><li>The building block of random forests and gradient boosting</li></ul></div>
+        <div><h3 class="bad-h">Weaknesses</h3><ul><li>Overfits easily when grown deep</li><li>Unstable: small data changes can give a very different tree</li><li>Axis-aligned cuts struggle with diagonal boundaries</li><li>The weakest single model in this repo (87.7% test on Breast Cancer)</li></ul></div>
+      </div>
+      <div class="prose"><p><strong>Use it when:</strong> You need rules a person can follow, or as an exploratory first look at which features matter.</p><p><strong>Avoid it when:</strong> Accuracy matters most. Use a random forest or gradient boosting instead.</p></div>
+    </section>
+    <section class="block" aria-labelledby="repo">
+      <h2 id="repo">In this repository</h2>
+      <p class="muted">Dataset: Breast Cancer Wisconsin (569 rows, 30 features)</p>
+      <div class="result-grid"><div><strong>93.8%</strong><span>5-fold CV accuracy</span></div><div><strong>87.7%</strong><span>Held-out test accuracy</span></div><div><strong>14 / 114</strong><span>Test mistakes</span></div></div>
+      <p class="callout">The gap between cross-validation and test accuracy is a sign of instability: a different split gives a different model.</p>
+      <figure style="margin:0;max-width:760px"><img src="../assets/results/decision-tree.png" alt="Result plot for Decision Tree from the repository" loading="lazy" style="border:1px solid var(--rule);border-radius:10px;background:#fff"></figure>
+      <pre><code>from sklearn.tree import DecisionTreeClassifier, export_text
+
+tree = DecisionTreeClassifier(max_depth=4, min_samples_leaf=5).fit(X_train, y_train)
+print(export_text(tree, feature_names=feature_names))</code></pre>
+      <p class="small muted">Full code: <a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS/tree/main/models/06_decision_tree">models/06_decision_tree</a>. Train it on your own data with
+      <code>python models/06_decision_tree/train.py</code> --data your.csv --target column.</p>
+    </section>
+    <section class="block" aria-labelledby="quiz-h">
+      <h2 id="quiz-h">Check yourself</h2>
+      <div class="quiz" data-slug="decision-tree"><div class="q" data-answer="1"><div class="q-title">1. How does a tree choose a split?</div><div class="q-opts"><button type="button">At random</button><button type="button">The split that makes the child groups purest</button><button type="button">The median of each feature</button><button type="button">The split with the most points on the left</button></div><p class="q-explain" hidden>It minimises impurity such as Gini or entropy.</p></div><div class="q" data-answer="0"><div class="q-title">2. Why do tree boundaries look like staircases?</div><div class="q-opts"><button type="button">Each split is a threshold on one feature, parallel to an axis</button><button type="button">Trees use polynomials</button><button type="button">The plot is low resolution</button><button type="button">Because of the kernel</button></div><p class="q-explain" hidden>One feature per question means cuts are horizontal or vertical.</p></div><div class="q" data-answer="1"><div class="q-title">3. A tree gets 100% train and 80% test accuracy. What is likely?</div><div class="q-opts"><button type="button">Underfitting</button><button type="button">Overfitting: it memorised the training data</button><button type="button">A bug in the test set</button><button type="button">Perfect generalisation</button></div><p class="q-explain" hidden>Limit depth or leaf size, or use an ensemble.</p></div><p class="quiz-score muted">Answer all three correctly to mark this model as learned.</p></div>
+    </section>
+    <nav class="pager" aria-label="Previous and next model"><a href="svm.html"><span>← Previous</span>Support Vector Machine</a><a class="next" href="random-forest.html"><span>Next →</span>Random Forest</a></nav>
+  </main>
+</div></div>
+<footer class="site"><div class="wrap">
+  <span>Built from the code and results in <a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS">MACHINE-LEARNING-MODELS</a>. Every number on this site comes from a real run.</span>
+  <span><span id="progress-count">0</span> of 12 models learned</span>
+</div></footer>
+<script src="../assets/site.js"></script>
+<script src="../assets/plot.js"></script>
+<script src="../assets/demos.js"></script>
+<script src="../assets/cnn.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Core Concepts · Twelve Models</title>
+<meta name="description" content="Train/test splits, overfitting, cross-validation, precision and recall, and leakage, with live demos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem("theme"));if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+  <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 26 26" aria-hidden="true"><rect x="0.5" y="0.5" width="25" height="25" rx="6" fill="var(--panel)" stroke="var(--rule)"/><path d="M4 21 L22 5" stroke="var(--ink)" stroke-width="1.6"/><circle cx="8" cy="9" r="2.2" fill="var(--c0)"/><circle cx="12" cy="6.5" r="2.2" fill="var(--c0)"/><circle cx="14" cy="19" r="2.2" fill="var(--c1)"/><circle cx="19.5" cy="15" r="2.2" fill="var(--c1)"/></svg>Twelve Models</a>
+  <nav class="topnav" aria-label="Main"><a href="index.html">Home</a><a href="concepts.html" aria-current="page">Concepts</a><a href="index.html#path">All models</a><a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS">GitHub</a></nav>
+  <button class="theme-btn" id="theme-btn" type="button" aria-label="Toggle theme"></button>
+</div></header>
+<main class="wrap"><div style="display:grid;gap:56px;padding-block:40px 64px;max-width:980px">
+<header class="model-head">
+  <span class="eyebrow">Before the models</span>
+  <h1>Core concepts</h1>
+  <p class="lede">Five ideas that decide whether a model is any good, whichever algorithm you use. Ten minutes here will make every model page clearer.</p>
+</header>
+
+<section class="block prose" aria-labelledby="c1">
+  <h2 id="c1">1. Features, labels and the two kinds of learning</h2>
+  <p>A data set is a table. Each row is an <strong>example</strong> (a house, an email, an image). The columns describing it are <strong>features</strong>. In <strong>supervised learning</strong> one extra column is the <strong>label</strong> you want to predict: a number (<em>regression</em>, e.g. price) or a category (<em>classification</em>, e.g. spam or not). In <strong>unsupervised learning</strong> there is no label, and the goal is to find structure such as groups (clustering) or a simpler description (dimensionality reduction).</p>
+</section>
+
+<section class="block" aria-labelledby="c2">
+  <h2 id="c2">2. Never grade a model on its own homework</h2>
+  <div class="prose"><p>A model can memorise its training data, so its score on that data says little. Before training, set aside a <strong>test set</strong> the model never sees. Its score on that set estimates how it will do on new data. Every result on this site is a test-set score.</p></div>
+  <div class="split-bar" role="img" aria-label="80 percent training data, 20 percent test data">
+    <div style="flex:8;background:color-mix(in srgb,var(--c0) 30%,var(--panel))">Training data (80%): the model learns from this</div>
+    <div style="flex:2;background:color-mix(in srgb,var(--c1) 55%,var(--panel))">Test (20%)</div>
+  </div>
+</section>
+
+<section class="block" aria-labelledby="c3">
+  <h2 id="c3">3. Underfitting and overfitting</h2>
+  <div class="prose"><p>A model that is too simple misses the pattern (<strong>underfitting</strong>). A model that is too flexible learns the noise as well (<strong>overfitting</strong>): it looks brilliant on training data and disappoints on test data. Every model has knobs that move it between the two, such as tree depth, k in KNN, or the degree of a polynomial below.</p></div>
+  <div data-demo="overfit"></div>
+</section>
+
+<section class="block" aria-labelledby="c4">
+  <h2 id="c4">4. Cross-validation: a fairer score on small data</h2>
+  <div class="prose"><p>One test split can be lucky or unlucky. <strong>K-fold cross-validation</strong> splits the training data into k parts, trains k times, and checks on a different part each time. The average is a steadier estimate. It is also how hyperparameters are tuned without touching the test set. Press the button to step through the rounds.</p></div>
+  <div class="folds"><div class="fold-row"><span>Round 1</span><div class="fold-cell"></div><div class="fold-cell"></div><div class="fold-cell"></div><div class="fold-cell"></div><div class="fold-cell"></div></div><div class="fold-row"><span>Round 2</span><div class="fold-cell"></div><div class="fold-cell"></div><div class="fold-cell"></div><div class="fold-cell"></div><div class="fold-cell"></div></div><div class="fold-row"><span>Round 3</span><div class="fold-cell"></div><div class="fold-cell"></div><div class="fold-cell"></div><div class="fold-cell"></div><div class="fold-cell"></div></div><div class="fold-row"><span>Round 4</span><div class="fold-cell"></div><div class="fold-cell"></div><div class="fold-cell"></div><div class="fold-cell"></div><div class="fold-cell"></div></div><div class="fold-row"><span>Round 5</span><div class="fold-cell"></div><div class="fold-cell"></div><div class="fold-cell"></div><div class="fold-cell"></div><div class="fold-cell"></div></div><div><button class="btn small" type="button">Next round</button></div></div>
+</section>
+
+<section class="block" aria-labelledby="c5">
+  <h2 id="c5">5. Accuracy can lie</h2>
+  <div class="prose"><p>If 1% of transactions are fraud, a model that always says “not fraud” is 99% accurate and completely useless. On imbalanced data, look at <strong>precision</strong> (of the cases you flagged, how many were right) and <strong>recall</strong> (of the real cases, how many you caught). Set positives to 1% below and compare accuracy with the “always negative” baseline.</p></div>
+  <div data-demo="threshold"></div>
+</section>
+
+<section class="block prose" aria-labelledby="c6">
+  <h2 id="c6">6. Leakage: the most common fake 99%</h2>
+  <p><strong>Leakage</strong> means a feature secretly contains the answer, for example a “cancellation reason” column when predicting churn, or a value that is only known after the outcome. The model scores near 100% in testing and fails in real use. If a score looks too good to be true, check whether one column alone predicts the label. The repository's <code>automl.py</code> does this check automatically.</p>
+  <p class="callout">Ready? Start with <a href="models/linear-regression.html">model 1: Linear Regression</a>.</p>
+</section>
+</div></main>
+<footer class="site"><div class="wrap">
+  <span>Built from the code and results in <a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS">MACHINE-LEARNING-MODELS</a>. Every number on this site comes from a real run.</span>
+  <span><span id="progress-count">0</span> of 12 models learned</span>
+</div></footer>
+<script src="assets/site.js"></script>
+<script src="assets/plot.js"></script>
+<script src="assets/demos.js"></script>
+<script src="assets/cnn.js"></script>
+</body>
+</html>

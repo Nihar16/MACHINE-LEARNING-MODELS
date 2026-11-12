@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Principal Component Analysis · Twelve Models</title>
+<meta name="description" content="Rotates the data to find the few directions that capture most of its variation, so you can keep those and drop the rest.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem("theme"));if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+  <a class="brand" href="../index.html"><svg class="brand-mark" viewBox="0 0 26 26" aria-hidden="true"><rect x="0.5" y="0.5" width="25" height="25" rx="6" fill="var(--panel)" stroke="var(--rule)"/><path d="M4 21 L22 5" stroke="var(--ink)" stroke-width="1.6"/><circle cx="8" cy="9" r="2.2" fill="var(--c0)"/><circle cx="12" cy="6.5" r="2.2" fill="var(--c0)"/><circle cx="14" cy="19" r="2.2" fill="var(--c1)"/><circle cx="19.5" cy="15" r="2.2" fill="var(--c1)"/></svg>Twelve Models</a>
+  <nav class="topnav" aria-label="Main"><a href="../index.html">Home</a><a href="../concepts.html">Concepts</a><a href="../index.html#path" aria-current="page">All models</a><a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS">GitHub</a></nav>
+  <button class="theme-btn" id="theme-btn" type="button" aria-label="Toggle theme"></button>
+</div></header>
+<div class="wrap"><div class="model-layout">
+  <nav class="rail" aria-label="Models"><div class="eyebrow">Regression</div><a href="linear-regression.html">Linear Regression<span class="tick" data-learned-slug="linear-regression" hidden aria-label="learned">✓</span></a><div class="eyebrow">Classification</div><a href="logistic-regression.html">Logistic Regression<span class="tick" data-learned-slug="logistic-regression" hidden aria-label="learned">✓</span></a><a href="knn.html">K-Nearest Neighbors<span class="tick" data-learned-slug="knn" hidden aria-label="learned">✓</span></a><a href="naive-bayes.html">Naive Bayes<span class="tick" data-learned-slug="naive-bayes" hidden aria-label="learned">✓</span></a><a href="svm.html">Support Vector Machine<span class="tick" data-learned-slug="svm" hidden aria-label="learned">✓</span></a><div class="eyebrow">Trees and ensembles</div><a href="decision-tree.html">Decision Tree<span class="tick" data-learned-slug="decision-tree" hidden aria-label="learned">✓</span></a><a href="random-forest.html">Random Forest<span class="tick" data-learned-slug="random-forest" hidden aria-label="learned">✓</span></a><a href="gradient-boosting.html">Gradient Boosting<span class="tick" data-learned-slug="gradient-boosting" hidden aria-label="learned">✓</span></a><div class="eyebrow">Unsupervised</div><a href="kmeans.html">K-Means Clustering<span class="tick" data-learned-slug="kmeans" hidden aria-label="learned">✓</span></a><a href="pca.html" aria-current="page">Principal Component Analysis<span class="tick" data-learned-slug="pca" hidden aria-label="learned">✓</span></a><div class="eyebrow">Deep learning</div><a href="neural-network.html">Neural Network (MLP)<span class="tick" data-learned-slug="neural-network" hidden aria-label="learned">✓</span></a><a href="cnn.html">Convolutional Neural Network<span class="tick" data-learned-slug="cnn" hidden aria-label="learned">✓</span></a></nav>
+  <main class="model-main">
+    <select class="rail-select" id="rail-select" aria-label="Jump to a model"><option value="" disabled>Jump to a model</option><option value="linear-regression.html">1. Linear Regression</option><option value="logistic-regression.html">2. Logistic Regression</option><option value="knn.html">3. K-Nearest Neighbors</option><option value="naive-bayes.html">4. Naive Bayes</option><option value="svm.html">5. Support Vector Machine</option><option value="decision-tree.html">6. Decision Tree</option><option value="random-forest.html">7. Random Forest</option><option value="gradient-boosting.html">8. Gradient Boosting</option><option value="kmeans.html">9. K-Means Clustering</option><option value="pca.html" selected>10. Principal Component Analysis</option><option value="neural-network.html">11. Neural Network (MLP)</option><option value="cnn.html">12. Convolutional Neural Network</option></select>
+    <header class="model-head">
+      <span class="eyebrow">Model 10 of 12 · Unsupervised</span>
+      <h1>Principal Component Analysis</h1>
+      <p class="lede">Rotates the data to find the few directions that capture most of its variation, so you can keep those and drop the rest.</p>
+      <div class="tags"><span class="pill">Unsupervised</span><span class="pill">Dimensionality reduction</span><span class="pill">Linear</span></div>
+    </header>
+    <section class="block" aria-labelledby="try">
+      <h2 id="try">Try it</h2>
+      <div data-demo="pca"></div>
+      <p class="callout"><strong>Experiment:</strong> Lower the correlation to 0: no direction is special and PC1 keeps only about 50%. Raise it to 0.98 and one direction keeps almost everything.</p>
+    </section>
+    <section class="block prose" aria-labelledby="idea">
+      <h2 id="idea">The idea</h2>
+      <p>Correlated features carry overlapping information. PCA finds new axes, the principal components, ordered by how much of the data’s spread they capture. The first component points along the direction of greatest variance; the second is perpendicular to it and captures the most of what remains.</p><p>In the demo, rotate the line yourself and watch the variance of the projected points. The maximum you can find is exactly PC1. Keeping the top few components compresses the data while keeping most of the information.</p>
+    </section>
+    <section class="block" aria-labelledby="how">
+      <h2 id="how">How it works, step by step</h2>
+      <ol class="steps"><li><span>Centre (and usually scale) each feature.</span></li><li><span>Compute the covariance matrix: how features vary together.</span></li><li><span>Find its eigenvectors (directions) and eigenvalues (variance along each direction).</span></li><li><span>Keep the top components that explain enough variance (e.g. 95%) and project the data onto them.</span></li></ol>
+      <div class="formula">Σ = (1/n) XᵀX   (covariance of centred data)<br>Σ v = λ v   → components v, variance λ<br>Explained variance ratio = λₖ / Σ λ<span class="note">On the repo’s Digits data, 29 of 64 pixel features keep 95% of the variance, and an SVM on those 29 still scores 99.2%.</span></div>
+    </section>
+    <section class="block" aria-labelledby="when">
+      <h2 id="when">Strengths and weaknesses</h2>
+      <div class="procon">
+        <div><h3 class="good-h">Strengths</h3><ul><li>Reduces dimensions and noise, often with no loss in accuracy</li><li>Removes correlation between features</li><li>Speeds up later models</li><li>Lets you plot high-dimensional data in 2-D</li></ul></div>
+        <div><h3 class="bad-h">Weaknesses</h3><ul><li>Components are mixtures of features, hard to interpret</li><li>Captures only linear structure</li><li>Sensitive to feature scaling and outliers</li></ul></div>
+      </div>
+      <div class="prose"><p><strong>Use it when:</strong> Many correlated numeric features, visualisation, or speeding up a downstream model.</p><p><strong>Avoid it when:</strong> You need to explain results in terms of the original features, or the structure is strongly non-linear.</p></div>
+    </section>
+    <section class="block" aria-labelledby="repo">
+      <h2 id="repo">In this repository</h2>
+      <p class="muted">Dataset: Digits (1797 images, 64 pixel features)</p>
+      <div class="result-grid"><div><strong>29 of 64</strong><span>Components for 95% variance</span></div><div><strong>41 of 64</strong><span>Components for 99% variance</span></div><div><strong>99.2%</strong><span>SVM accuracy on 29 components</span></div></div>
+      <p class="callout">Cutting 64 features to 29 loses no accuracy here: the SVM scores as well as on all 64.</p>
+      <figure style="margin:0;max-width:760px"><img src="../assets/results/pca.png" alt="Result plot for Principal Component Analysis from the repository" loading="lazy" style="border:1px solid var(--rule);border-radius:10px;background:#fff"></figure>
+      <pre><code>from sklearn.decomposition import PCA
+
+pca = PCA(n_components=0.95)        # keep 95% of the variance
+X_small = pca.fit_transform(X_scaled)
+pca.explained_variance_ratio_</code></pre>
+      <p class="small muted">Full code: <a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS/tree/main/models/10_pca">models/10_pca</a>. Train it on your own data with
+      <code>python models/10_pca/train.py</code> --data your.csv --target column.</p>
+    </section>
+    <section class="block" aria-labelledby="quiz-h">
+      <h2 id="quiz-h">Check yourself</h2>
+      <div class="quiz" data-slug="pca"><div class="q" data-answer="1"><div class="q-title">1. What does the first principal component capture?</div><div class="q-opts"><button type="button">The most important label</button><button type="button">The direction of greatest variance</button><button type="button">The mean of the data</button><button type="button">The noisiest feature</button></div><p class="q-explain" hidden>PC1 is the axis along which projected points are most spread out.</p></div><div class="q" data-answer="0"><div class="q-title">2. Why scale features before PCA?</div><div class="q-opts"><button type="button">Otherwise large-unit features dominate the variance</button><button type="button">PCA needs labels</button><button type="button">To make it non-linear</button><button type="button">It is not needed</button></div><p class="q-explain" hidden>Variance depends on units; scaling puts features on equal footing.</p></div><div class="q" data-answer="1"><div class="q-title">3. Are principal components easy to interpret?</div><div class="q-opts"><button type="button">Yes, each is one original feature</button><button type="button">Not usually; each mixes many features</button><button type="button">Only for images</button><button type="button">Only PC1</button></div><p class="q-explain" hidden>That is the main trade-off of PCA.</p></div><p class="quiz-score muted">Answer all three correctly to mark this model as learned.</p></div>
+    </section>
+    <nav class="pager" aria-label="Previous and next model"><a href="kmeans.html"><span>← Previous</span>K-Means Clustering</a><a class="next" href="neural-network.html"><span>Next →</span>Neural Network (MLP)</a></nav>
+  </main>
+</div></div>
+<footer class="site"><div class="wrap">
+  <span>Built from the code and results in <a href="https://github.com/Nihar16/MACHINE-LEARNING-MODELS">MACHINE-LEARNING-MODELS</a>. Every number on this site comes from a real run.</span>
+  <span><span id="progress-count">0</span> of 12 models learned</span>
+</div></footer>
+<script src="../assets/site.js"></script>
+<script src="../assets/plot.js"></script>
+<script src="../assets/demos.js"></script>
+<script src="../assets/cnn.js"></script>
+</body>
+</html>
