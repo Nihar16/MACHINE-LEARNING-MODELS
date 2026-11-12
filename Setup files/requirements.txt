@@ -7,6 +7,8 @@ xgboost
 lightgbm
 jupyter
 ipykernel
+openpyxl     # reading Excel files in automl.py / train.py
+pytest
 
 # Deep learning (uncomment what you need; these are large downloads)
 # tensorflow

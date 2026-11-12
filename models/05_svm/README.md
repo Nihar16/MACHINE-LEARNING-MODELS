@@ -22,3 +22,11 @@ Both numbers are reported because 99% on CV alone could be luck in fold selectio
 ```bash
 python models/05_svm/model.py
 ```
+
+## Train on your own data
+
+```bash
+python models/05_svm/train.py --data your_data.csv --target column_to_predict
+```
+
+Supports classification and regression. Tunes hyperparameters with cross-validation, reports the held-out score honestly and saves `ml_output/svm/model.joblib` for `predict.py`. See [Use It on Your Own Data](../../README.md#use-it-on-your-own-data).

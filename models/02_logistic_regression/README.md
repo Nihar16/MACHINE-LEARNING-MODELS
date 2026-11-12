@@ -23,3 +23,11 @@ Moving past about 98% would need richer data, since a linear boundary is already
 ```bash
 python models/02_logistic_regression/model.py
 ```
+
+## Train on your own data
+
+```bash
+python models/02_logistic_regression/train.py --data your_data.csv --target column_to_predict
+```
+
+Supports classification. Tunes hyperparameters with cross-validation, reports the held-out score honestly and saves `ml_output/logistic_regression/model.joblib` for `predict.py`. See [Use It on Your Own Data](../../README.md#use-it-on-your-own-data).

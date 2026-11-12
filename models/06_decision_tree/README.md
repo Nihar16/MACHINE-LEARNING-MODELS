@@ -23,3 +23,11 @@ Random Forest and Gradient Boosting exist to fix exactly this, by averaging or b
 ```bash
 python models/06_decision_tree/model.py
 ```
+
+## Train on your own data
+
+```bash
+python models/06_decision_tree/train.py --data your_data.csv --target column_to_predict
+```
+
+Supports classification and regression. Tunes hyperparameters with cross-validation, reports the held-out score honestly and saves `ml_output/decision_tree/model.joblib` for `predict.py`. See [Use It on Your Own Data](../../README.md#use-it-on-your-own-data).

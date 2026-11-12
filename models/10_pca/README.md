@@ -20,3 +20,11 @@
 ```bash
 python models/10_pca/model.py
 ```
+
+## Train on your own data
+
+```bash
+python models/10_pca/train.py --data your_data.csv --target column_to_predict
+```
+
+Supports classification and regression. Tunes hyperparameters with cross-validation, reports the held-out score honestly and saves `ml_output/pca/model.joblib` for `predict.py`. See [Use It on Your Own Data](../../README.md#use-it-on-your-own-data).

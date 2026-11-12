@@ -42,3 +42,11 @@ Real data is rarely this linear. On **California Housing**, plain linear regress
 | Fast, closed-form solution | Assumes a linear relationship |
 | Coefficients are directly interpretable | Sensitive to outliers |
 | Strong baseline | Multicollinearity makes coefficients unstable |
+
+## Train on your own data
+
+```bash
+python models/01_linear_regression/train.py --data your_data.csv --target column_to_predict
+```
+
+Supports regression. Tunes hyperparameters with cross-validation, reports the held-out score honestly and saves `ml_output/linear_regression/model.joblib` for `predict.py`. See [Use It on Your Own Data](../../README.md#use-it-on-your-own-data).
