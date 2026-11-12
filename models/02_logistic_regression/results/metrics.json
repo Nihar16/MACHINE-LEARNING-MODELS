@@ -1,0 +1,20 @@
+{
+  "model": "Logistic Regression",
+  "dataset": "Breast Cancer Wisconsin",
+  "n_samples": 569,
+  "n_features": 30,
+  "n_classes": 2,
+  "best_params": {
+    "clf__C": 0.1,
+    "clf__penalty": "l2",
+    "clf__solver": "liblinear"
+  },
+  "cv_accuracy": 0.9824175824175825,
+  "cv_accuracy_std": 0.005383493940182844,
+  "test_accuracy": 0.9824561403508771,
+  "test_f1_macro": 0.9811507936507937,
+  "test_errors": 2,
+  "n_test": 114,
+  "tuning_seconds": 1.2,
+  "test_roc_auc": 0.996031746031746
+}

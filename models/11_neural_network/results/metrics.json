@@ -1,0 +1,20 @@
+{
+  "model": "Neural Network (MLP)",
+  "dataset": "Digits",
+  "n_samples": 1797,
+  "n_features": 64,
+  "n_classes": 10,
+  "best_params": {
+    "mlp__alpha": 0.0001,
+    "mlp__hidden_layer_sizes": [
+      256
+    ]
+  },
+  "cv_accuracy": 0.9812088656600851,
+  "cv_accuracy_std": 0.008705820832771606,
+  "test_accuracy": 0.9805555555555555,
+  "test_f1_macro": 0.9801673658275034,
+  "test_errors": 7,
+  "n_test": 360,
+  "tuning_seconds": 15.2
+}

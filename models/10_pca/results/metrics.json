@@ -1,0 +1,33 @@
+{
+  "model": "PCA",
+  "dataset": "Digits",
+  "n_samples": 1797,
+  "n_features": 64,
+  "components_for_variance": {
+    "90%": 21,
+    "95%": 29,
+    "99%": 41
+  },
+  "svm_accuracy": {
+    "all 64 features": {
+      "components": 64,
+      "cv_accuracy": 0.9910956360259983,
+      "cv_std": 0.004450268033189637
+    },
+    "PCA 21 comp (90% var)": {
+      "components": 21,
+      "cv_accuracy": 0.9905385329619314,
+      "cv_std": 0.002229220253115888
+    },
+    "PCA 29 comp (95% var)": {
+      "components": 29,
+      "cv_accuracy": 0.992205199628598,
+      "cv_std": 0.0036993727456329536
+    },
+    "PCA 41 comp (99% var)": {
+      "components": 41,
+      "cv_accuracy": 0.9910956360259983,
+      "cv_std": 0.0032474030097864918
+    }
+  }
+}

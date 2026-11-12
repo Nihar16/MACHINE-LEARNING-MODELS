@@ -1,0 +1,10 @@
+{
+  "model": "K-Means",
+  "dataset": "Iris",
+  "n_samples": 150,
+  "k": 3,
+  "features": "raw features",
+  "silhouette": 0.5528190123564095,
+  "adjusted_rand_index": 0.7302382722834697,
+  "matched_accuracy": 0.8933333333333333
+}

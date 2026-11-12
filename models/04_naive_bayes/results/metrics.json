@@ -1,0 +1,18 @@
+{
+  "model": "Gaussian Naive Bayes",
+  "dataset": "Wine",
+  "n_samples": 178,
+  "n_features": 13,
+  "n_classes": 3,
+  "best_params": {
+    "clf__var_smoothing": 1e-09,
+    "transform": "PowerTransformer()"
+  },
+  "cv_accuracy": 0.972167487684729,
+  "cv_accuracy_std": 0.02587496746141655,
+  "test_accuracy": 1.0,
+  "test_f1_macro": 1.0,
+  "test_errors": 0,
+  "n_test": 36,
+  "tuning_seconds": 2.1
+}
