@@ -1,0 +1,20 @@
+{
+  "model": "SVM",
+  "dataset": "Digits",
+  "n_samples": 1797,
+  "n_features": 64,
+  "n_classes": 10,
+  "best_params": {
+    "C": 1,
+    "degree": 3,
+    "gamma": "scale",
+    "kernel": "poly"
+  },
+  "cv_accuracy": 0.9909504452187379,
+  "cv_accuracy_std": 0.002788701708259347,
+  "test_accuracy": 0.9861111111111112,
+  "test_f1_macro": 0.9859843930702675,
+  "test_errors": 5,
+  "n_test": 360,
+  "tuning_seconds": 2.3
+}

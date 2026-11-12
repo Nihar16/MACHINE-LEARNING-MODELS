@@ -1,0 +1,20 @@
+{
+  "model": "LightGBM",
+  "dataset": "Breast Cancer Wisconsin",
+  "n_samples": 569,
+  "n_features": 30,
+  "n_classes": 2,
+  "best_params": {
+    "learning_rate": 0.03,
+    "max_depth": 4,
+    "n_estimators": 200
+  },
+  "cv_accuracy": 0.9736263736263737,
+  "cv_accuracy_std": 0.01490621974313247,
+  "test_accuracy": 0.9649122807017544,
+  "test_f1_macro": 0.9623015873015872,
+  "test_errors": 4,
+  "n_test": 114,
+  "tuning_seconds": 0.9,
+  "test_roc_auc": 0.9927248677248677
+}

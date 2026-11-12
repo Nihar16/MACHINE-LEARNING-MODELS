@@ -1,0 +1,19 @@
+{
+  "model": "KNN",
+  "dataset": "Digits",
+  "n_samples": 1797,
+  "n_features": 64,
+  "n_classes": 10,
+  "best_params": {
+    "n_neighbors": 5,
+    "p": 2,
+    "weights": "uniform"
+  },
+  "cv_accuracy": 0.9874661246612467,
+  "cv_accuracy_std": 0.007510410333153393,
+  "test_accuracy": 0.9833333333333333,
+  "test_f1_macro": 0.9830456008969376,
+  "test_errors": 6,
+  "n_test": 360,
+  "tuning_seconds": 1.3
+}

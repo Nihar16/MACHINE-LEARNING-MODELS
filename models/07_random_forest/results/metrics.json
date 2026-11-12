@@ -1,0 +1,19 @@
+{
+  "model": "Random Forest",
+  "dataset": "Wine",
+  "n_samples": 178,
+  "n_features": 13,
+  "n_classes": 3,
+  "best_params": {
+    "max_features": "sqrt",
+    "min_samples_leaf": 1,
+    "n_estimators": 300
+  },
+  "cv_accuracy": 0.9790640394088669,
+  "cv_accuracy_std": 0.027713464392187602,
+  "test_accuracy": 1.0,
+  "test_f1_macro": 1.0,
+  "test_errors": 0,
+  "n_test": 36,
+  "tuning_seconds": 5.0
+}

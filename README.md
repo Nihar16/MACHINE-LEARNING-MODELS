@@ -18,6 +18,7 @@ A hands-on collection of classic machine learning models implemented, explained,
 5. [Getting Started](#getting-started)
 6. [Workflow Used for Every Model](#workflow-used-for-every-model)
 7. [Evaluation Metrics](#evaluation-metrics)
+8. [Results](#results)
 8. [Datasets](#datasets)
 9. [Roadmap](#roadmap)
 10. [Contributing](#contributing)
@@ -444,6 +445,47 @@ flowchart LR
 
 ---
 
+## Results
+
+Every model is tuned with 5-fold cross-validation on the training set and then scored once on a held-out 20% test set. Full table: [`results/comparison.md`](results/comparison.md).
+
+### Classification
+
+| Model | Dataset | CV accuracy | Test accuracy | ≥99% on both |
+|---|---|---|---|---|
+| [Logistic Regression](models/02_logistic_regression/) | Breast Cancer Wisconsin | 98.2% ± 0.5% | 98.2% (2/114 wrong) | no |
+| [KNN](models/03_knn/) | Digits | 98.7% ± 0.8% | 98.3% (6/360 wrong) | no |
+| [Gaussian Naive Bayes](models/04_naive_bayes/) | Wine | 97.2% ± 2.6% | 100.0% (0/36 wrong) | no |
+| [SVM](models/05_svm/) | Digits | 99.1% ± 0.3% | 98.6% (5/360 wrong) | no |
+| [Decision Tree](models/06_decision_tree/) | Breast Cancer Wisconsin | 93.8% ± 1.9% | 87.7% (14/114 wrong) | no |
+| [Random Forest](models/07_random_forest/) | Wine | 97.9% ± 2.8% | 100.0% (0/36 wrong) | no |
+| [XGBoost](models/08_gradient_boosting/) | Breast Cancer Wisconsin | 97.8% ± 1.6% | 95.6% (5/114 wrong) | no |
+| [Neural Network (MLP)](models/11_neural_network/) | Digits | 98.1% ± 0.9% | 98.1% (7/360 wrong) | no |
+
+### Regression
+
+| Model | Dataset | Result |
+|---|---|---|
+| [Linear Regression](models/01_linear_regression/) | Synthetic linear housing data | test R² 0.9935, CV R² 0.9929 |
+
+### Unsupervised
+
+| Model | Dataset | Result |
+|---|---|---|
+| [K-Means](models/09_kmeans/) | Iris | matched accuracy 89.3%, ARI 0.73, silhouette 0.55 |
+| [PCA](models/10_pca/) | Digits | 41 of 64 components keep 99% of variance; SVM on PCA 29 comp (95% var): 99.2% CV |
+
+> **About 99% accuracy:** on these real datasets only the SVM (and an SVM on PCA-reduced features) reaches about 99%, and only in cross-validation. The other classifiers score 93.8% (Decision Tree) to 98.7% (KNN) in CV. A 100% test score on Wine comes from 36 samples, so the CV score is the honest estimate there. Linear Regression reaches R² 0.99 because its dataset is synthetic and linear by design.
+
+Re-run everything:
+
+```bash
+for m in models/*/model.py; do python "$m"; done
+python utils/compare.py
+```
+
+---
+
 ## Datasets
 
 | Dataset | Used For |
@@ -460,15 +502,15 @@ flowchart LR
 
 ## Roadmap
 
-- [ ] Linear and Logistic Regression
-- [ ] KNN and Naive Bayes
-- [ ] Decision Tree and Random Forest
-- [ ] SVM
-- [ ] Gradient Boosting (XGBoost / LightGBM)
-- [ ] K-Means and PCA
-- [ ] Neural Network (MLP)
+- [x] Linear and Logistic Regression
+- [x] KNN and Naive Bayes
+- [x] Decision Tree and Random Forest
+- [x] SVM
+- [x] Gradient Boosting (XGBoost / LightGBM)
+- [x] K-Means and PCA
+- [x] Neural Network (MLP)
 - [ ] CNN for image classification
-- [ ] Final model comparison report
+- [x] Final model comparison report
 - [ ] Applied security project (network intrusion detection)
 
 ---
