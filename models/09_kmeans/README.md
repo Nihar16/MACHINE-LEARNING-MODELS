@@ -21,3 +21,12 @@ No unsupervised method can reach 99% here, because the two overlapping species a
 ```bash
 python models/09_kmeans/model.py
 ```
+
+## Cluster your own data
+
+```bash
+python models/09_kmeans/train.py --data your_data.csv            # k chosen by silhouette score
+python models/09_kmeans/train.py --data your_data.csv --k 4 --target label   # label used only to score clusters
+```
+
+Writes `ml_output/kmeans/clusters.csv` with a `cluster` column for every row.

@@ -18,6 +18,7 @@ A hands-on collection of classic machine learning models implemented, explained,
 5. [Getting Started](#getting-started)
 6. [Workflow Used for Every Model](#workflow-used-for-every-model)
 7. [Evaluation Metrics](#evaluation-metrics)
+8. [Use It on Your Own Data](#use-it-on-your-own-data)
 8. [Results](#results)
 8. [Datasets](#datasets)
 9. [Roadmap](#roadmap)
@@ -442,6 +443,60 @@ flowchart LR
 | Dimensionality Reduction | Explained Variance Ratio |
 
 > Accuracy alone is misleading on imbalanced data; precision, recall, and F1 are prioritized there.
+
+---
+
+## Use It on Your Own Data
+
+Every model can be trained on any table you have: CSV, Excel, Parquet or TSV, with numbers, text categories, true/false values, dates and missing values. You only name the column to predict.
+
+```bash
+# Try every model and keep the best one
+python automl.py --data your_data.csv --target column_to_predict
+
+# Or train one specific model
+python models/07_random_forest/train.py --data your_data.csv --target column_to_predict
+
+# Predict on new rows with the saved model
+python predict.py --model ml_output/best/model.joblib --data new_rows.csv --out predictions.csv
+```
+
+| Model | Command | Tasks |
+|---|---|---|
+| Linear Regression (OLS / Ridge / Lasso) | `python models/01_linear_regression/train.py` | regression |
+| Logistic Regression | `python models/02_logistic_regression/train.py` | classification |
+| K-Nearest Neighbors | `python models/03_knn/train.py` | classification, regression |
+| Gaussian Naive Bayes | `python models/04_naive_bayes/train.py` | classification |
+| Support Vector Machine | `python models/05_svm/train.py` | classification, regression |
+| Decision Tree | `python models/06_decision_tree/train.py` | classification, regression |
+| Random Forest | `python models/07_random_forest/train.py` | classification, regression |
+| Gradient Boosting (XGBoost / LightGBM) | `python models/08_gradient_boosting/train.py` | classification, regression |
+| K-Means | `python models/09_kmeans/train.py` | clustering (no target needed) |
+| PCA + linear model | `python models/10_pca/train.py` | classification, regression |
+| Neural Network (MLP) | `python models/11_neural_network/train.py` | classification, regression |
+
+**What happens automatically**
+
+- **Task detection:** a text or small-integer target means classification, otherwise regression. Override it with `--task`.
+- **Cleaning:** ID columns, constant columns and free-text columns are dropped. Dates become year, month, day and weekday. Missing values are filled in, categories are one-hot encoded, and numbers are scaled. All of this is learned on training rows only.
+- **Tuning:** randomized hyperparameter search with cross-validation on the training split (`--n-iter`, `--folds`).
+- **Honest scoring:** the final score comes from a 20% held-out test split. The winning model is chosen by its cross-validation score, never by its test score.
+- **Safety checks:** each run compares against a do-nothing baseline and warns about class imbalance and duplicated rows. It also flags **leakage**, meaning a single column that predicts the target almost perfectly, which is the most common reason for a fake 99%.
+
+**About 99% accuracy:** each run reports whether `--target-score` (default 0.99) was reached. Whether 99% is possible depends on how much your features say about the target, not on the model. Clean, well-separated problems reach it, but noisy real-world ones (churn, prices, medical outcomes) often top out far lower, and no amount of tuning changes that. If a run reports 99% together with a leakage warning, drop that column with `--drop column_name` and rerun.
+
+From Python or Colab:
+
+```python
+import pandas as pd
+from utils.generalized import run_automl, train_model
+
+df = pd.read_csv("your_data.csv")
+report = run_automl(df, target="column_to_predict", out_dir="ml_output/best")
+model = report["model_object"]  # a fitted scikit-learn pipeline: model.predict(new_df)
+```
+
+Run the tests with `python -m pytest tests -q`.
 
 ---
 

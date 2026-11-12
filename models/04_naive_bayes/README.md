@@ -22,3 +22,11 @@ Naive Bayes is at its strongest on text, such as spam filtering, where word coun
 ```bash
 python models/04_naive_bayes/model.py
 ```
+
+## Train on your own data
+
+```bash
+python models/04_naive_bayes/train.py --data your_data.csv --target column_to_predict
+```
+
+Supports classification. Tunes hyperparameters with cross-validation, reports the held-out score honestly and saves `ml_output/naive_bayes/model.joblib` for `predict.py`. See [Use It on Your Own Data](../../README.md#use-it-on-your-own-data).

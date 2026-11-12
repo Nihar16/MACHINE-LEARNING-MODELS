@@ -22,3 +22,11 @@ Image models clear 99% with convolutional networks, which are planned in the REA
 ```bash
 python models/11_neural_network/model.py
 ```
+
+## Train on your own data
+
+```bash
+python models/11_neural_network/train.py --data your_data.csv --target column_to_predict
+```
+
+Supports classification and regression. Tunes hyperparameters with cross-validation, reports the held-out score honestly and saves `ml_output/neural_network/model.joblib` for `predict.py`. See [Use It on Your Own Data](../../README.md#use-it-on-your-own-data).
