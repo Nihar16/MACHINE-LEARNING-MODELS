@@ -19,6 +19,11 @@ def main() -> None:
             sup.append(f"| [{m['model']}](../models/{folder}/) | {m['dataset']} | "
                        f"{m['cv_accuracy']:.1%} ± {m['cv_accuracy_std']:.1%} | {m['test_accuracy']:.1%} "
                        f"({m['test_errors']}/{m['n_test']} wrong) | {hit} |")
+        elif "val_accuracy" in m:  # CNN: official MNIST test set, validation split picks the epoch
+            hit = "yes" if m["test_accuracy"] >= 0.99 else "no"
+            sup.append(f"| [{m['model']}](../models/{folder}/) | {m['dataset']} | "
+                       f"{m['val_accuracy']:.1%} (validation) | {m['test_accuracy']:.2%} "
+                       f"({m['test_errors']}/{m['n_test']} wrong) | {hit} |")
         elif m["model"] == "K-Means":
             other.append(f"| [K-Means](../models/{folder}/) | {m['dataset']} | matched accuracy {m['matched_accuracy']:.1%}, "
                          f"ARI {m['adjusted_rand_index']:.2f}, silhouette {m['silhouette']:.2f} |")

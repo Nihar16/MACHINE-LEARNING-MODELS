@@ -12,4 +12,5 @@ pytest
 
 # Deep learning (uncomment what you need; these are large downloads)
 # tensorflow
-# torch
+torch        # CNN (models/12_cnn)
+torchvision
