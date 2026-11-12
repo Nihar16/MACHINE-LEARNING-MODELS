@@ -16,6 +16,7 @@ Test = one held-out 20% split.
 | [Random Forest](../models/07_random_forest/) | Wine | 97.9% ± 2.8% | 100.0% (0/36 wrong) | no |
 | [XGBoost](../models/08_gradient_boosting/) | Breast Cancer Wisconsin | 97.8% ± 1.6% | 95.6% (5/114 wrong) | no |
 | [Neural Network (MLP)](../models/11_neural_network/) | Digits | 98.1% ± 0.9% | 98.1% (7/360 wrong) | no |
+| [CNN (SimpleCNN)](../models/12_cnn/) | MNIST | 99.6% (validation) | 99.67% (33/10000 wrong) | yes |
 
 ## Regression
 

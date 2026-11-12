@@ -57,6 +57,7 @@ flowchart LR
     UNS --> KM["K-Means"]
     UNS --> PCA["PCA"]
     DL --> MLP["Neural Network"]
+    DL --> CNN["CNN"]
 ```
 
 ---
@@ -237,7 +238,19 @@ flowchart LR
 | Scales with data and compute | Black box, hard to interpret |
 | Basis for modern deep learning | Many hyperparameters; easy to overfit |
 
-**Planned extensions:** Convolutional Neural Network (image classification on MNIST/CIFAR-10).
+#### 12. Convolutional Neural Network (CNN)
+**What it is:** A neural network built for images. Convolution layers slide small filters over the image to detect edges and strokes, then combine them into shapes and objects.
+
+**How it works:** Stacks of convolution, batch normalization, pooling and dropout layers, then a small dense head. Data augmentation (random shifts, rotations and zooms) teaches it that a moved or tilted object is still the same object. Built with PyTorch.
+
+**Typical use cases:** Image classification, medical imaging, defect detection, handwriting and document recognition.
+
+| Pros | Cons |
+|------|------|
+| State of the art for images | Needs more data and compute than classic models |
+| Learns features automatically | Hard to interpret |
+| Robust to small shifts and distortions | Many design choices to tune |
+| Transfer learning from pretrained networks works well on small datasets | Training is slow without a GPU |
 
 ---
 
@@ -256,6 +269,7 @@ flowchart LR
 | K-Means | Clustering | Medium | Fast | Yes | No |
 | PCA | Dim. reduction | Low | Fast | Yes | No |
 | Neural Network | Both | Very low | Slow | Yes | Yes |
+| CNN | Images | Very low | Slow (fast on GPU) | Yes (normalize) | Yes |
 
 ---
 
@@ -353,7 +367,7 @@ flowchart TD
     C1 -->|"No"| C3{"Tabular data?"}
     C3 -->|"Yes"| C4["Random Forest or Gradient Boosting"]
     C3 -->|"Text"| C5["Naive Bayes or Logistic Regression"]
-    C3 -->|"Images or huge data"| C6["Neural Network"]
+    C3 -->|"Images"| C6["CNN"]
 ```
 
 ---
@@ -474,6 +488,7 @@ python predict.py --model ml_output/best/model.joblib --data new_rows.csv --out 
 | K-Means | `python models/09_kmeans/train.py` | clustering (no target needed) |
 | PCA + linear model | `python models/10_pca/train.py` | classification, regression |
 | Neural Network (MLP) | `python models/11_neural_network/train.py` | classification, regression |
+| CNN | `python models/12_cnn/train.py --data image_folder` | image classification (one sub-folder per class) |
 
 **What happens automatically**
 
@@ -516,6 +531,7 @@ Every model is tuned with 5-fold cross-validation on the training set and then s
 | [Random Forest](models/07_random_forest/) | Wine | 97.9% ± 2.8% | 100.0% (0/36 wrong) | no |
 | [XGBoost](models/08_gradient_boosting/) | Breast Cancer Wisconsin | 97.8% ± 1.6% | 95.6% (5/114 wrong) | no |
 | [Neural Network (MLP)](models/11_neural_network/) | Digits | 98.1% ± 0.9% | 98.1% (7/360 wrong) | no |
+| [**CNN**](models/12_cnn/) | **MNIST** (70,000 images) | 99.6% (validation) | **99.67%** (33/10,000 wrong) | **yes** |
 
 ### Regression
 
@@ -530,7 +546,7 @@ Every model is tuned with 5-fold cross-validation on the training set and then s
 | [K-Means](models/09_kmeans/) | Iris | matched accuracy 89.3%, ARI 0.73, silhouette 0.55 |
 | [PCA](models/10_pca/) | Digits | 41 of 64 components keep 99% of variance; SVM on PCA 29 comp (95% var): 99.2% CV |
 
-> **About 99% accuracy:** on these real datasets only the SVM (and an SVM on PCA-reduced features) reaches about 99%, and only in cross-validation. The other classifiers score 93.8% (Decision Tree) to 98.7% (KNN) in CV. A 100% test score on Wine comes from 36 samples, so the CV score is the honest estimate there. Linear Regression reaches R² 0.99 because its dataset is synthetic and linear by design.
+> **About 99% accuracy:** the **CNN clears it on real data, with 99.67% on the official 10,000-image MNIST test set.** Among the classic models, only the SVM (and an SVM on PCA-reduced features) reaches about 99%, and only in cross-validation. The other classifiers score 93.8% (Decision Tree) to 98.7% (KNN) in CV. A 100% test score on Wine comes from 36 samples, so the CV score is the honest estimate there. Linear Regression reaches R² 0.99 because its dataset is synthetic and linear by design.
 
 Re-run everything:
 
@@ -564,7 +580,7 @@ python utils/compare.py
 - [x] Gradient Boosting (XGBoost / LightGBM)
 - [x] K-Means and PCA
 - [x] Neural Network (MLP)
-- [ ] CNN for image classification
+- [x] CNN for image classification
 - [x] Final model comparison report
 - [ ] Applied security project (network intrusion detection)
 

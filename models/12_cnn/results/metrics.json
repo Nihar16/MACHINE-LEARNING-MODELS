@@ -1,0 +1,15 @@
+{
+  "model": "CNN (SimpleCNN)",
+  "dataset": "MNIST",
+  "n_train": 55000,
+  "n_val": 5000,
+  "n_test": 10000,
+  "parameters": 304682,
+  "epochs": 10,
+  "best_epoch": 10,
+  "val_accuracy": 0.996,
+  "test_accuracy": 0.9967,
+  "test_errors": 33,
+  "device": "cpu",
+  "train_seconds": 561
+}
